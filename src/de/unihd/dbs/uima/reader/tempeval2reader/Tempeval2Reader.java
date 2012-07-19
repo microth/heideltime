@@ -259,7 +259,7 @@ public class Tempeval2Reader extends CollectionReader_ImplBase {
 						}
 						
 						// new Sentence, first Token
-						else if (tokId == newTokSentNumber){
+						else if ((tokId == newTokSentNumber) || (lastSentId != sentId)){
 							positionCounter = addSentenceAnnotation(sentString, fileId, sentId-1, positionCounter, jcas);
 							text = text+" "+tokenString;
 							sentString  = tokenString;
