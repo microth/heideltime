@@ -1,15 +1,17 @@
 // author: Jannik Strötgen
 // email:  stroetgen@uni-hd.de
-// date:   2012-07-16
+// date:   2012-07-19
 // This file contains regular expression patterns for unit words.
 // FORMAT: one line is one disjunction of the pattern
-[Dd]ías? habíl(es)?
-[Dd]ías? bursátil(es)?
-[Dd]ías?
-[Ff]in(es)? de semana
-[Ss]emanas?
-[Mm]es(es)?
-[Tt]rimestres?
-[Aa]ños?
-[Dd]écadas?
-[Ss]iglos?
+[Gg]iornata lavorativa
+[Gg]iorno lavorativo
+[Gg]iorno feriale
+[Gg]iorno
+[Ff]ine settimana
+[Ss]ettimana
+[Mm]ese
+[Tt]rimestre
+[Aa]nno
+[Dd]ecennio
+[Dd]ecade
+[Ss]ecolo

@@ -19,4 +19,10 @@
 "[Pp]asad[oa]s?","last"
 "[Pp]revi[oa]s?","last"
 "[Úú]ltim[oa]s?","last"
-
+// ITALIAN
+// THIS
+"[Qq]uest[oa]","this"
+// NEXT
+"[Pp]rossim[oa]","next"
+// LAST
+"[Ss]cors[oa]","last"
