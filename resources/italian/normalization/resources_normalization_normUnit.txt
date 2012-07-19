@@ -1,6 +1,6 @@
-// author: Antonio Cancela Díaz, Jannik Strötgen
+// author: Jannik Strötgen
 // email:  stroetgen@uni-hd.de
-// date:   2012-07-16
+// date:   2012-07-19
 // This file contains "unit words" and their normalized expressions.
 // For example, the normalized value of "week" is "week"
 // FORMAT: "unit-word","normalized-unit-word"
@@ -9,15 +9,15 @@
 // but they are needed here
 "[Mm]inutos?","minute"
 "[Hh]oras?","hour"
-"[Dd]ías? bursátil(es)?","day"
-"[Dd]ías? habíl(es)?","day"
-"[Dd]ías?","day"
-"[Ff]in(es)? de semana","weekend"
-"[Ss]emanas?","week"
-"[Mm]es(es)?","month"
-"[Cc]uartos?","quarter"
-"[Tt]rimestres?","quarter"
-"[Aa]ños?","year"
-"[Dd]écadas?","decade"
-"[Ss]iglos?","century"
-
+"[Gg]iornata lavorativa","day"
+"[Gg]iorno lavorativo","day"
+"[Gg]iorno feriale","day"
+"[Gg]iorno","day"
+"[Ff]ine settimana","weekend"
+"[Ss]ettimana","week"
+"[Mm]ese","month"
+"[Tt]rimestre","quarter"
+"[Aa]nno","year"
+"[Dd]ecennio","decade"
+"[Dd]ecade","decade"
+"[Ss]ecolo","century"

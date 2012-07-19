@@ -1,20 +1,22 @@
-// author: Antonio Cancela Díaz, Jannik Strötgen
+// author: Jannik Strötgen
 // email:  stroetgen@uni-hd.de
-// date:   2012-07-16
+// date:   2012-07-19
 // This file contains "unit words for duration" and their normalized expressions
 // according to TIMEX3 format.
 // For example, the normalized value of "week" is "W"
 // FORMAT: "unit-word","normalized-unit-word"
-"[Dd]ías?","D"
-"[Ff]in(es)? de semana","WE"
-"[Ss]emanas?","W"
-"[Mm]es(es)?","M"
-"[Tt]rimestres?","Q"
-"[Aa]ños?","Y"
-"[Dd]écadas?","DE"
-"[Ss]iglos?","CE"
+"[Gg]iornata lavorativa","D"
+"[Gg]iorno lavorativo","D"
+"[Gg]iorno feriale","D"
+"[Gg]iorno","D"
+"[Ff]ine settimana","WE"
+"[Ss]ettimana","W"
+"[Mm]ese","M"
+"[Tt]rimestre","Q"
+"[Aa]nno","Y"
+"[Dd]ecennio","DE"
+"[Dd]ecade","DE"
+"[Ss]ecolo","CE"
 "[Hh]oras?","H"
 "[Mm]inutos?","M"
-"[Dd]ías? habíl(es)?","D"
-"[Dd]ías? bursátil(es)?","D"
 

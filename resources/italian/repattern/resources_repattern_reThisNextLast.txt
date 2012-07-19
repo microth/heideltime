@@ -20,6 +20,13 @@
 [Pp]revi[oa]s?
 [Úú]ltim[oa]s?
 //[Ff]ollowing and similar expressions -> handled differently using UNDEF-REF
+// ITALIAN
+// THIS
+[Qq]uest[oa]
+// NEXT
+[Pp]rossim[oa]
+// LAST
+[Ss]cors[oa]
 
 
 
