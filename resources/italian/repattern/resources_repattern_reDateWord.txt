@@ -5,22 +5,29 @@
 // FORMAT: one line is one disjunction of the pattern
 // THESE EXPRESSIONS ARE ALL IMPLICITS
 // SHOULD ONLY BE UPPER CASE IF AT THE BEGINNING OF A SENTENCE
-[Aa]ctual(mente)?
-[Aa]hora( mismo)?
-[Aa]nteayer
-[Aa]ntes de ayer
-[Aa]yer
-[Ee]stos días
-[Ee]stos momentos
-[Ee]ste momento
-[Hh]oy por hoy
-[Hh]oy
-[Jj]usto ahora
-[Ll]o antes posible
-[Pp]asado mañana
-[Mm]añana
-//[Pp]osterior(mente)?
-[Pp]ronto
-[Rr]eciente(mente)?
-[Tt]an pronto como sea posible
+[Aa]ttualmente
+[Aa]ddesso
+[Aa]vantieri
+[Aa]vant'ieri
+[Ii]eri l'altro
+[Ll]'altro ieri
+[Ii]eri
+//[Ee]stos días
+//[Ee]stos momentos
+//[Ee]ste momento
+[Aa]l giorno d'oggi
+[Oo]ggi come oggi
+[Oo]ggidì
+[Oo]ggigiorno
+[Oo]ggi
+//[Jj]usto ahora
+//[Ll]o antes posible
+[Dd]opodomani
+[Pp]osdomani
+[Dd]omani
+[Rr]ecentemente
+[Dd]i fresco
+[Dd]i recente
 [Uu]ltimamente
+//[Tt]an pronto como sea posible
+

@@ -22,11 +22,15 @@
 // EXAMPLE r0d_1: 29/06/99
 // EXAMPLE r0d_2: 29 VI 99
 // EXAMPLE r0e_1: 16-4 (AP) (find 16-4)
+// EXAMPLE r0f_1: 2010/01/29
+// EXAMPLE r0g_1: 99/01/29
 RULENAME="date_r0a",EXTRACTION="(%reDayNumber-%reMonthNumber-%reYear4Digit)",NORM_VALUE="group(2)-%normMonth(group(3))-group(4)"
 RULENAME="date_r0b",EXTRACTION="(%reDayNumber-%reMonthNumber-%reYear2Digit)",NORM_VALUE="UNDEF-centurygroup(4)-%normMonth(group(2))-group(3)"
 RULENAME="date_r0c",EXTRACTION="%reDayNumber(/| )%reMonthNumber(/| )%reYear4Digit",NORM_VALUE="group(5)-%normMonth(group(3))-%normDay(group(1))"
 RULENAME="date_r0d",EXTRACTION="%reDayNumber(/| )%reMonthNumber(/| )%reYear2Digit",NORM_VALUE="UNDEF-centurygroup(5)-%normMonth(group(3))-%normDay(group(1))"
 RULENAME="date_r0e",EXTRACTION="%reDayNumber-%reMonthNumber( \(.*?\))",NORM_VALUE="UNDEF-year-%normMonth(group(2))-%normDay(group(1))",OFFSET="group(1)-group(2)"
+RULENAME="date_r0f",EXTRACTION="%reYear4Digit\/%reMonthNumber\/%reDayNumber",NORM_VALUE="group(1)-%normMonth(group(2))-group(3)"
+RULENAME="date_r0g",EXTRACTION="%reYear2Digit\/%reMonthNumber\/%reDayNumber",NORM_VALUE="19group(1)-%normMonth(group(2))-group(3)"
 
 // date_r1
 // EXAMPLE r1a_1: el 30 de abril de 1999
