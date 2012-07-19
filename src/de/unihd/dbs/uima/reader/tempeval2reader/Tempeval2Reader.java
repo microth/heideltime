@@ -237,20 +237,25 @@ public class Tempeval2Reader extends CollectionReader_ImplBase {
 					fileId  = parts[0];
 					sentId = Integer.parseInt(parts[1]);
 					Integer tokId  = Integer.parseInt(parts[2]);
-					String tokenString = parts[3];
+
+					// Check for "empty tokens" (Italian corpus)
+					String tokenString = "";
+					if (!(parts.length < 4)){
+						tokenString = parts[3];	
+					}
 					
 					if (resettingParentheses == true){
 						tokenString = resetParentheses(tokenString);
 					}
-					
+									
 					if (fileId.equals(docname)){
 						
-						// First Sentence, first Token
+						// First Sentence, first Token	
 						if ((sentId == newTokSentNumber) && (tokId == newTokSentNumber)){
-							firstSentProcessed = true;
-							text = tokenString;
-							sentString  = tokenString;
-							positionCounter = addTokenAnnotation(tokenString, fileId, sentId, tokId, positionCounter, jcas);
+								firstSentProcessed = true;
+								text = tokenString;
+								sentString  = tokenString;
+								positionCounter = addTokenAnnotation(tokenString, fileId, sentId, tokId, positionCounter, jcas);
 						}
 						
 						// new Sentence, first Token
@@ -260,7 +265,7 @@ public class Tempeval2Reader extends CollectionReader_ImplBase {
 							sentString  = tokenString;
 							positionCounter = addTokenAnnotation(tokenString, fileId, sentId, tokId, positionCounter, jcas);
 						}
-						
+								
 						// within any sentence
 						else{
 							text = text+" "+tokenString;
