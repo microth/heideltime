@@ -40,6 +40,10 @@ RULENAME="duration_r2e",EXTRACTION="(%reApproximate )?([Ll][oa]s )?(%reThisNextL
 RULENAME="duration_r3a",EXTRACTION="(%reApproximate )?([Ll][oa]s )?([Mm]uch[oa]s|[Vv]ari[oa]s|[Hh]ace|[Úú]ltim[oa]s|[Pp]róxim[oa]s|[Uu]n[oa]s|[Pp]oc[oa]s|[Aa]lgun[oa]s) %reUnit",NORM_VALUE="PX%normUnit4Duration(group(5))",NORM_MOD="%normApprox4Durations(group(2))"
 RULENAME="duration_r3b",EXTRACTION="(%reApproximate )?([Ll][oa]s )?([Mm]uch[oa]s|[Vv]ari[oa]s|[Hh]ace|[Úú]ltim[oa]s|[Pp]róxim[oa]s|[Uu]n[oa]s|[Pp]oc[oa]s|[Aa]lgun[oa]s) (minutos?|horas?)",NORM_VALUE="PTX%normUnit4Duration(group(5))",NORM_MOD="%normApprox4Durations(group(2))"
 
+// ITALIAN
+RULENAME="duration_r3c",EXTRACTION="(%reApproximate )?([Qq]uesti|[Pp]rossimi|[Ss]corsi|[Qq]ualche) %reUnit",NORM_VALUE="PX%normUnit4Duration(group(4))",NORM_MOD="%normApprox4Durations(group(2))"
+RULENAME="duration_r3d",EXTRACTION="(%reApproximate )?%reUnit ([Qq]uesti|[Pp]rossimi|[Ss]corsi|[Qq]ualche)",NORM_VALUE="PX%normUnit4Duration(group(3))",NORM_MOD="%normApprox4Durations(group(2))"
+
 // duration_r4
 // EXAMPLE r4a-1: dos a tres años
 // EXAMPLE r4b-1: dos a tres horas

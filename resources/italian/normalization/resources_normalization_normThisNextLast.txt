@@ -1,4 +1,4 @@
-// author: Antonio Cancela Díaz, Jannik Strötgen
+// author: Jannik Strötgen
 // email:  stroetgen@uni-hd.de
 // date:   2012-07-16
 // This file contains "this/next/last words" and their normalized expressions.

@@ -4,11 +4,11 @@
 // This file contains "weekday words" and their normalized expressions.
 // For example, the normalized value of "Monday" is "monday"
 // FORMAT: "weekday-word","normalized-weekday-word"
-"[Ll]unedì","monday"
-"[Mm]artedì","tuesday"
-"[Mm]ercoledì","wednesday"
-"[Gg]iovedì","thursday"
-"[Vv]enerdì","friday"
+"[Ll]uned(ì|i')","monday"
+"[Mm]arted(ì|i')","tuesday"
+"[Mm]ercoled(ì|i')","wednesday"
+"[Gg]ioved(ì|i')","thursday"
+"[Vv]enerd(ì|i')","friday"
 "[Ss]abato","saturday"
 "[Dd]omenica","sunday"
 

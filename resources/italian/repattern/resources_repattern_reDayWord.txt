@@ -30,7 +30,7 @@
 [Tt]rentuno
 // 1 - 9
 [Aa]cces[oa]
-[Uu]n[oa]
+[Uu]n[oa]?
 [Dd]ue
 [Tt]re
 [Qq]uattro

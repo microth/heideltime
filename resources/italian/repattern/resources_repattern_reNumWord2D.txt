@@ -1,96 +1,96 @@
-// author: Antonio Cancela Díaz, Jannik Strötgen
+// author: Jannik Strötgen
 // email:  stroetgen@uni-hd.de
-// date:   2012-07-16
+// date:   2012-07-19
 // This file contains regular expression patterns for 
 // number word 2 digits: reNumWord2D
 // FORMAT: one line is one disjunction of the pattern
-[Dd]iez
-[Oo]nce
-[Dd]oce
-[Tt]rece
-[Cc]atorce
-[Qq]uince
-[Dd]ieciséis
-[Dd]iecisiete
-[Dd]ieciocho
-[Dd]iecinueve
-[Vv]eintiuno
-[Tt]reinta y uno
-[Cc]uarenta y uno
-[Cc]incuenta y uno
-[Ss]esenta y uno
-[Ss]etenta y uno
-[Oo]chenta y uno
-[Nn]oventa y uno
-[Vv]eintidós
-[Tt]reinta y dos
-[Cc]uarenta y dos
-[Cc]incuenta y dos
-[Ss]esenta y dos
-[Ss]etenta y dos
-[Oo]chenta y dos
-[Nn]oventa y dos
-[Vv]eintitrés
-[Tt]reinta y tres
-[Cc]uarenta y tres
-[Cc]incuenta y tres
-[Ss]esenta y tres
-[Ss]etenta y tres
-[Oo]chenta y tres
-[Nn]oventa y tres
-[Vv]einticuatro
-[Tt]reinta y cuatro
-[Cc]uarenta y cuatro
-[Cc]incuenta y cuatro
-[Ss]esenta y cuatro
-[Ss]etenta y cuatro
-[Oo]chenta y cuatro
-[Nn]oventa y cuatro
-[Vv]einticinco
-[Tt]reinta y cinco
-[Cc]uarenta y cinco
-[Cc]incuenta y cinco
-[Ss]esenta y cinco
-[Ss]etenta y cinco
-[Oo]chenta y cinco
-[Nn]oventa y cinco
-[Vv]eintiséis
-[Tt]reinta y seis
-[Cc]uarenta y seis
-[Cc]incuenta y seis
-[Ss]esenta y seis
-[Ss]etenta y seis
-[Oo]chenta y seis
-[Nn]oventa y seis
-[Vv]eintisiete
-[Tt]reinta y siete
-[Cc]uarenta y siete
-[Cc]incuenta y siete
-[Ss]esenta y siete
-[Ss]etenta y siete
-[Oo]chenta y siete
-[Nn]oventa y siete
-[Vv]eintiocho
-[Tt]reinta y ocho
-[Cc]uarenta y ocho
-[Cc]incuenta y ocho
-[Ss]esenta y ocho
-[Ss]etenta y ocho
-[Oo]chenta y ocho
-[Nn]oventa y ocho
-[Vv]eintinueve
-[Tt]reinta y nueve
-[Cc]uarenta y nueve
-[Cc]incuenta y nueve
-[Ss]esenta y nueve
-[Ss]etenta y nueve
-[Oo]chenta y nueve
-[Nn]oventa y nueve
-[Vv]einte
-[Tt]reinta
-[Cc]uarenta
-[Cc]incuenta
-[Ss]esenta
-[Ss]etenta
-[Oo]chenta
-[Nn]oventa
+[Uu]ndici
+[Dd]odici
+[Tt]redici
+[Qq]uattrodici
+[Qq]uindici
+[Ss]edici
+[Dd]iciassette
+[Dd]iciotto
+[Dd]iciannove
+[Dd]ieci
+[Vv]entuno
+[Vv]entidue
+[Vv]entitré
+[Vv]entiquattro
+[Vv]enticinque
+[Vv]entisei
+[Vv]entisette
+[Vv]entotto
+[Vv]entinove
+[Vv]enti
+[Tt]rentuno
+[Tt]rentadue
+[Tt]rentatré
+[Tt]rentaquattro
+[Tt]rentacinque
+[Tt]rentasei
+[Tt]rentasette
+[Tt]rentotto
+[Tt]rentanove
+[Tt]renta
+[Qq]uarantuno
+[Qq]uarantadue
+[Qq]uarantatré
+[Qq]uarantaquattro
+[Qq]uarantacinque
+[Qq]uarantasei
+[Qq]uarantasette
+[Qq]uarantotto
+[Qq]uarantanove
+[Qq]uaranta
+[Cc]inquantuno
+[Cc]inquantadue
+[Cc]inquantatré
+[Cc]inquantaquattro
+[Cc]inquantacinque
+[Cc]inquantasei
+[Cc]inquantasette
+[Cc]inquantotto
+[Cc]inquantanove
+[Cc]inquanta
+[Ss]essantuno
+[Ss]essantadue
+[Ss]essantatré
+[Ss]essantaquattro
+[Ss]essantacinque
+[Ss]essantasei
+[Ss]essantasette
+[Ss]essantotto
+[Ss]essantanove
+[Ss]essanta
+[Ss]ettantuno
+[Ss]ettantadue
+[Ss]ettantatré
+[Ss]ettantaquattro
+[Ss]ettantacinque
+[Ss]ettantasei
+[Ss]ettantasette
+[Ss]ettantotto
+[Ss]ettantanove
+[Ss]ettanta
+[Oo]ttantuno
+[Oo]ttantadue
+[Oo]ttantatré
+[Oo]ttantaquattro
+[Oo]ttantacinque
+[Oo]ttantasei
+[Oo]ttantasette
+[Oo]ttantotto
+[Oo]ttantanove
+[Oo]ttanta
+[Nn]ovantuno
+[Nn]ovantadue
+[Nn]ovantatré
+[Nn]ovantaquattro
+[Nn]ovantacinque
+[Nn]ovantasei
+[Nn]ovantasette
+[Nn]ovantotto
+[Nn]ovantanove
+[Nn]ovanta
