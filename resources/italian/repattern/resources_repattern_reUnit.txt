@@ -4,14 +4,14 @@
 // This file contains regular expression patterns for unit words.
 // FORMAT: one line is one disjunction of the pattern
 [Gg]iornata lavorativa
-[Gg]iorno lavorativo
-[Gg]iorno feriale
-[Gg]iorno
+[Gg]iorn[oi] lavorativo
+[Gg]iorn[oi] feriale
+[Gg]iorn[oi]
 [Ff]ine settimana
-[Ss]ettimana
-[Mm]ese
+[Ss]ettiman[ae]
+[Mm]es[ei]
 [Tt]rimestre
-[Aa]nno
+[Aa]nn[oi]
 [Dd]ecennio
 [Dd]ecade
 [Ss]ecolo

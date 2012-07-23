@@ -43,6 +43,15 @@ RULENAME="time_r3d",EXTRACTION="([Dd]el |[Ee]l |[Ll]a |[Aa]l )?%rePartOfDay ([Dd
 RULENAME="time_r3e",EXTRACTION="([Dd]el |[Ee]l |[Ll]a |[Aa]l )?%rePartOfDay ([Dd]e la|[Dd]el|[Ee]l|[Ll]a|[Aa]l) %reWeekday %reThisNextLast",NORM_VALUE="UNDEF-%normThisNextLast(group(5))-%normWeekday(group(4))T%normPartOfDay(group(2))"
 RULENAME="time_r3f",EXTRACTION="([Dd]el |[Ee]l |[Ll]a |[Aa]l )?%rePartOfDay ([Dd]e la|[Dd]el|[Ee]l|[Ll]a|[Aa]l) %reWeekday",NORM_VALUE="UNDEF-day-%normWeekday(group(4))T%normPartOfDay(group(2))"
 
+// ITALIAN
+RULENAME="time_r3g",EXTRACTION="([Dd]omattina)",NORM_VALUE="UNDEF-next-dayTMO"
+// ITALIAN
+RULENAME="time_r3h",EXTRACTION="([Ss]taman[ei]|[Ss]tamattina)",NORM_VALUE="UNDEF-this-dayTMO"
+// ITALIAN
+RULENAME="time_r3i",EXTRACTION="%reWeekday %rePartOfDay",NORM_VALUE="UNDEF-day-%normWeekday(group(1))T%normPartOfDay(group(2))"
+RULENAME="time_r3j",EXTRACTION="%reDateWord %rePartOfDay",NORM_VALUE="%normDateWord(group(1))T%normPartOfDay(group(2))"
+
+
 ///////////////////////////
 // TIMEPOINT GRANULARITY //
 ///////////////////////////

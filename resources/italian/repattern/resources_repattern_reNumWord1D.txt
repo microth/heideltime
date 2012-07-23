@@ -3,12 +3,13 @@
 // date:   2012-07-16
 // This file contains regular expression patterns for number word 1 digits.
 // FORMAT: one line is one disjunction of the pattern
+[Aa]cces[oa]
 [Uu]n[oa]?
-[Dd]os
-[Tt]res
-[Cc]uatro
-[Cc]inco
-[Ss]eis
-[Ss]iete
-[Oo]cho
-[Nn]ueve
+[Dd]ue
+[Tt]re
+[Qq]uattro
+[Cc]inque
+[Ss]ei
+[Ss]ette
+[Oo]tto
+[Nn]ove

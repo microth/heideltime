@@ -3,27 +3,35 @@
 // date:   2012-07-19
 // This file contains regular expression patterns for "approximate" words.
 // FORMAT: one line is one disjunction of the pattern
-// about
-// PREGUNTAR si dejar el "de", poner 2 patrones diferentes, o generalizar?
-[Aa]cerca( de)?
-[Aa]lrededor
-[Aa]proximadamente
-[Cc]asi
-[Cc]erca( de)?
-[Pp]rácticamente
-[Uu]n[oa]s
-// less
-[Hh]ace
-// "hace dos años": in the spanish tempeval-2: 
-// "P2M" and not "UNDEF-this-month-LESS-2" 
-[Mm]enos( de)?
-[Mm]enos que
-[Nn]o más( de)?
-[Nn]o más que
-//  more
-[Aa]l menos
-//[Hh]asta -> usually not a good idea to include "hasta" in the temporal expression
-[Mm]ás( de)?
-[Mm]ás que
-[Ss]obre
+// ITALIAN
+// LESS, BEFORE
+[Pp]i(ù|u') di
+[Nn]on meno di
+[Aa]l massimo
+[Oo]ltre
+// APPROX
+[Cc]irca
+[Vv]erso
+[Ii]ntorno a
+[Uu]n paio di
+// MORE, AFTER
+[Aa]ppena
+[Mm]eno di
+[Nn]on pi(ù|u') di
+[Aa]lmeno
+
+// ADDITIONAL LEXICALS
+// LESS
+[Tt]utt'( )?al pi(ù|u')
+// ABOUT
+[Aa]ll'( )?incirca
+[Ff]orse
+[Pp]i(ù|u') o meno
+// MORE
+[Cc]ome minimo
+[Pp]erlomeno
+[Pp]er lo meno
+[Qq]uantomeno
+[Qq]uanto meno
+
 

@@ -5,12 +5,9 @@
 // according to TIMEX3 format.
 // For example, the normalized value of "summer" is "SU"
 // FORMAT: "season-word","normalized-season-word"
+// ITALIAN
 "[Pp]rimavera","SP"
-"[Vv]erano","SU"
-"[Ee]stío","SU"
-"[Oo]toño","FA"
-"[Ii]nvierno","WI"
-"[Tt]emporada primaveral","SP"
-"[Tt]emporada estival","SU"
-"[Tt]emporada otoñal","FA"
-"[Tt]emporada invernal","WI"
+"[Ee]state","SU"
+"[Aa]utunno","FA"
+"[Ii]nverno","WI"
+"[Vv]erno","WI"

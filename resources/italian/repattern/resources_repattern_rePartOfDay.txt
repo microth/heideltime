@@ -17,3 +17,17 @@
 [Mm]edianoche
 [Mm]edias noches
 [Nn]oches?
+
+// ITALIAN
+// MORNING
+[Mm]attin[oa]
+// MIDDAY
+[Mm]eridione
+[Mm]ezzod(ì|i')
+[Mm]ezzogiorno
+// AFTERNOON
+[Dd]opopranzo
+[Pp]omeriggio
+// NIGHT
+[Nn]otte
+[Nn]ottata

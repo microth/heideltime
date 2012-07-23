@@ -18,3 +18,17 @@
 "[Nn]oches?","NI"
 "[Mm]edianoche","24:00"
 "[Mm]edias noches","24:00"
+
+// ITALIAN
+// MORNING
+"[Mm]attin[oa]","MO"
+// MIDDAY
+"[Mm]eridione","MI"
+"[Mm]ezzod(ì|i')","MI"
+"[Mm]ezzogiorno","MI"
+// AFTERNOON
+"[Dd]opopranzo","AF"
+"[Pp]omeriggio","AF"
+// NIGHT
+"[Nn]otte","NI"
+"[Nn]ottata","NI"

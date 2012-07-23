@@ -23,3 +23,22 @@
 "[Mm]ás tarde","END"
 // OTHER
 "[Ff]iscal\-?",""
+
+
+// ITALIAN
+// START
+"[Ll]'( )?inizio( di| della| dell'| del)?","START"
+"[Ii]nizio( di| della| dell'| del)?","START"
+"[Ii] primi( di| della| dell'| del)?","START"
+"[Pp]rimi( di| della| dell'| del)?","START"
+"[Ll]'( )?alba( di| della| dell'| del)?","START"
+"[Aa]lba( di| della| dell'| del)?","START"
+// MID
+"[Mm]et(à|a')","MID"
+// END
+"[Ll]a fine( di| della| dell'| del)?","END"
+"[Ff]ine( di| della| dell'| del)?","END"
+"[Tt]ardo","END"
+"[Uu]ltimi","END"
+
+

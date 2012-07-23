@@ -6,7 +6,7 @@
 // THESE EXPRESSIONS ARE ALL IMPLICITS
 // SHOULD ONLY BE UPPER CASE IF AT THE BEGINNING OF A SENTENCE
 [Aa]ttualmente
-[Aa]ddesso
+[Aa]desso
 [Aa]vantieri
 [Aa]vant'ieri
 [Ii]eri l'altro
@@ -17,7 +17,7 @@
 //[Ee]ste momento
 [Aa]l giorno d'oggi
 [Oo]ggi come oggi
-[Oo]ggidì
+[Oo]ggid(ì|')
 [Oo]ggigiorno
 [Oo]ggi
 //[Jj]usto ahora
