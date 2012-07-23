@@ -1,23 +1,19 @@
-// author: Antonio Cancela Díaz, Jannik Strötgen
+// author: Jannik Strötgen
 // email:  stroetgen@uni-hd.de
 // date:   2012-07-16
 // This file contains regular expression patterns for decade words.
 // FORMAT: one line is one disjunction of the pattern
-[Vv]einte
-[Tt]reinta
-[Cc]uarenta
-[Cc]incuenta
-[Ss]esenta
-[Ss]etenta
-[Oo]chenta
-[Nn]oventa
-// expressions with "años"
-[Aa]ños veinte
-[Aa]ños treinta
-[Aa]ños cuarenta
-[Aa]ños cincuenta
-[Aa]ños sesenta
-[Aa]ños setenta
-[Aa]ños ochenta
-[Aa]ños noventa
-[Aa]ños [2-9]0
+// ITALIN
+[Aa]nni [Vv]enti
+[Aa]nni [Tt]renta
+[Aa]nni [Qq]uaranta
+[Aa]nni [Cc]inquanta
+[Aa]nni [Ss]essanta
+[Aa]nni [Ss]ettanta
+[Aa]nni [Oo]ttanta
+[Aa]nni [Nn]ovanta
+[Aa]nni (19)?[2-9]0
+[Aa]nni [Zz]ero
+[Aa]nni [Dd]uemiladieci
+[Aa]nni [Dd]uemila
+[Aa]nni (20)?[01]0

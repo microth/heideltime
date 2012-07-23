@@ -50,7 +50,8 @@ RULENAME="time_r3h",EXTRACTION="([Ss]taman[ei]|[Ss]tamattina)",NORM_VALUE="UNDEF
 // ITALIAN
 RULENAME="time_r3i",EXTRACTION="%reWeekday %rePartOfDay",NORM_VALUE="UNDEF-day-%normWeekday(group(1))T%normPartOfDay(group(2))"
 RULENAME="time_r3j",EXTRACTION="%reDateWord %rePartOfDay",NORM_VALUE="%normDateWord(group(1))T%normPartOfDay(group(2))"
-
+RULENAME="time_r3k",EXTRACTION="%rePartOfDay (di) %reWeekday",NORM_VALUE="UNDEF-day-%normWeekday(group(3))T%normPartOfDay(group(1))"
+RULENAME="time_r3l",EXTRACTION="%rePartOfDay (di) %reDateWord",NORM_VALUE="%normDateWord(group(3))T%normPartOfDay(group(1))"
 
 ///////////////////////////
 // TIMEPOINT GRANULARITY //

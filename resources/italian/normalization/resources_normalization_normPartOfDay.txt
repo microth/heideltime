@@ -29,6 +29,9 @@
 // AFTERNOON
 "[Dd]opopranzo","AF"
 "[Pp]omeriggio","AF"
+// EVENING
+"[Ss]era(ta)?","EV"
 // NIGHT
 "[Nn]otte","NI"
 "[Nn]ottata","NI"
+"[Mm]ezzanotte","00:00"
