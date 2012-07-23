@@ -28,6 +28,9 @@
 // AFTERNOON
 [Dd]opopranzo
 [Pp]omeriggio
+// EVENING
+[Ss]era(ta)?
 // NIGHT
 [Nn]otte
 [Nn]ottata
+[Mm]ezzanotte
