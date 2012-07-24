@@ -680,7 +680,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					}
 					// Tense is PAST
 					if ((last_used_tense.equals("PAST"))) {
-						if (dctDecade <= viThisDecade) {
+						if (dctDecade < viThisDecade) { // MODIFICATION CHECK FOR OTHER LANGUAGES!!!!!!!
 							newCenturyValue = dctCentury - 1+"";
 						} else {
 							newCenturyValue = dctCentury+"";
