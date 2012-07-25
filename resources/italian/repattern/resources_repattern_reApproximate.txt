@@ -4,7 +4,8 @@
 // This file contains regular expression patterns for "approximate" words.
 // FORMAT: one line is one disjunction of the pattern
 // ITALIAN
-[Aa]l massimo
+([Aa]l|[Uu]n) massimo( di| de)?
+([Aa]l|[Uu]n) minimo( di| de)?
 [Aa]lmeno
 [Aa]ppena
 [Cc]irca
