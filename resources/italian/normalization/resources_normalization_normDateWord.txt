@@ -14,7 +14,7 @@
 "[Ii]eri","UNDEF-last-day"
 "[Aa]l giorno d'oggi","PRESENT_REF"
 "[Oo]ggi come oggi","PRESENT_REF"
-"[Oo]ggid(ì|i')","PRESENT_REF"
+"[Oo]ggid(ì|i'|i)","PRESENT_REF"
 "[Oo]ggigiorno","PRESENT_REF"
 "[Oo]ggi","UNDEF-this-day"
 "[Dd]opodomani","UNDEF-this-day-PLUS-2"

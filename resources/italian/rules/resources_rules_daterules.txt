@@ -161,7 +161,11 @@ RULENAME="date_r12b",EXTRACTION="([Ll]a |[Ee]l )(década|decenio) de los %reDeca
 RULENAME="date_r12c",EXTRACTION="([Ee]l |[Ll]a |[Ll][oa]s )?(%rePartWords )?([Ll]os) (años )?%reDecadeWord",NORM_VALUE="19%normDecadeWord(group(6))",NORM_MOD="%normPartWords(group(2))"
 
 // ITALIAN
-RULENAME="date_r12c",EXTRACTION="(%rePartWords )?%reDecadeWord",NORM_VALUE="%normDecadeWord(group(3))",NORM_MOD="%normPartWords(group(2))"
+RULENAME="date_r12c",EXTRACTION="(%rePartWords )?%reDecadeWord",NORM_VALUE="19%normDecadeWord(group(3))",NORM_MOD="%normPartWords(group(2))"
+RULENAME="date_r12d",EXTRACTION="(%rePartWords )?[Aa]nni ([Dd]uemila|Zz]ero)",NORM_VALUE="200X",NORM_MOD="%normPartWords(group(2))"
+RULENAME="date_r12e",EXTRACTION="(%rePartWords )?[Aa]nni [Dd]uemiladieci",NORM_VALUE="201X",NORM_MOD="%normPartWords(group(2))"
+RULENAME="date_r12f",EXTRACTION="(%rePartWords )?[Aa]nni (\\d\\d\\d)0",NORM_VALUE="group(3)X",NORM_MOD="%normPartWords(group(2))"
+
 
 
 /////////////////////////

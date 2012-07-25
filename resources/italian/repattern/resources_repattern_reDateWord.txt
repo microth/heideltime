@@ -1,10 +1,9 @@
-// author: Antonio Cancela Díaz, Jannik Strötgen
+// author: Jannik Strötgen
 // email:  stroetgen@uni-hd.de
-// date:   2012-07-16
+// date:   2012-07-24
 // This file contains regular expression patterns for date words.
 // FORMAT: one line is one disjunction of the pattern
 // THESE EXPRESSIONS ARE ALL IMPLICITS
-// SHOULD ONLY BE UPPER CASE IF AT THE BEGINNING OF A SENTENCE
 [Aa]ttualmente
 [Aa]desso
 [Aa]vantieri
@@ -12,16 +11,11 @@
 [Ii]eri l'altro
 [Ll]'altro ieri
 [Ii]eri
-//[Ee]stos días
-//[Ee]stos momentos
-//[Ee]ste momento
 [Aa]l giorno d'oggi
 [Oo]ggi come oggi
-[Oo]ggid(ì|')
+[Oo]ggid(ì|i'|i)
 [Oo]ggigiorno
 [Oo]ggi
-//[Jj]usto ahora
-//[Ll]o antes posible
 [Dd]opodomani
 [Pp]osdomani
 [Dd]omani
@@ -29,5 +23,4 @@
 [Dd]i fresco
 [Dd]i recente
 [Uu]ltimamente
-//[Tt]an pronto como sea posible
 

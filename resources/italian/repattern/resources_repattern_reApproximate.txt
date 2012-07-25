@@ -1,33 +1,27 @@
 // author: Jannik Strötgen
 // email:  stroetgen@uni-hd.de
-// date:   2012-07-19
+// date:   2012-07-24
 // This file contains regular expression patterns for "approximate" words.
 // FORMAT: one line is one disjunction of the pattern
 // ITALIAN
-// LESS, BEFORE
-[Pp]i(ù|u') di
-[Nn]on meno di
 [Aa]l massimo
-[Oo]ltre
-// APPROX
-[Cc]irca
-[Vv]erso
-[Ii]ntorno a
-[Uu]n paio di
-// MORE, AFTER
-[Aa]ppena
-[Mm]eno di
-[Nn]on pi(ù|u') di
 [Aa]lmeno
+[Aa]ppena
+[Cc]irca
+[Ii]ntorno a
+[Nn]on meno di
+[Mm]eno di
+[Nn]on pi(ù|u'|u) di
+[Oo]ltre
+[Pp]i(ù|u'|u) di
+[Uu]n paio di
+[Vv]erso
 
 // ADDITIONAL LEXICALS
-// LESS
-[Tt]utt'( )?al pi(ù|u')
-// ABOUT
+[Tt]utt'( )?al pi(ù|u'|u)
 [Aa]ll'( )?incirca
 [Ff]orse
-[Pp]i(ù|u') o meno
-// MORE
+[Pp]i(ù|u'|u) o meno
 [Cc]ome minimo
 [Pp]erlomeno
 [Pp]er lo meno

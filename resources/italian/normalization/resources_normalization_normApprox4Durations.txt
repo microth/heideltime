@@ -7,7 +7,7 @@
 // FORMAT: "approximate-word","normalized-approximate-word"
 // ITALIAN
 // LESS, BEFORE
-"[Pp]i(ù|u') di","MORE_THAN"
+"[Pp]i(ù|u'|u) di","MORE_THAN"
 "[Nn]on meno di","EQUAL_OR_MORE"
 "[Aa]l massimo","EQUAL_OR_MORE"
 "[Oo]ltre","MORE_THAN"
@@ -19,16 +19,16 @@
 // MORE, AFTER
 "[Aa]ppena","LESS_THAN"
 "[Mm]eno di","LESS_THAN"
-"[Nn]on pi(ù|u') di","EQUAL_OR_LESS"
+"[Nn]on pi(ù|u'|u) di","EQUAL_OR_LESS"
 "[Aa]lmeno","EQUAL_OR_LESS"
 
 // ADDITIONAL LEXICALS
 // LESS
-"[Tt]utt'( )?al pi(ù|u')","EQUAL_OR_LESS"
+"[Tt]utt'( )?al pi(ù|u'|u)","EQUAL_OR_LESS"
 // ABOUT
 "[Aa]ll'( )?incirca","APPROX"
 "[Ff]orse","APPROX"
-"[Pp]i(ù|u') o meno","APPROX"
+"[Pp]i(ù|u'|u) o meno","APPROX"
 // MORE
 "[Cc]ome minimo","EQUAL_OR_MORE"
 "[Pp]erlomeno","EQUAL_OR_MORE"

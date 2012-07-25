@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -33,6 +35,7 @@ import org.apache.uima.util.Logger;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
 
+import de.unihd.dbs.uima.annotator.heideltime.utilities.Toolbox;
 import de.unihd.dbs.uima.types.heideltime.Dct;
 import de.unihd.dbs.uima.types.heideltime.Sentence;
 import de.unihd.dbs.uima.types.heideltime.Token;
@@ -310,6 +313,22 @@ public class Tempeval2Reader extends CollectionReader_ImplBase {
 	  }
 	  else if (tokenString.equals("-RCB-")){
 		  tokenString = tokenString.replace("-RCB-","}");
+	  }
+	  // ITALIAN TEMPEVAL CORPUS PROBLEMS
+	  else if (tokenString.endsWith("a'")){
+		  tokenString = tokenString.replaceFirst("a'", "à");
+	  }
+	  else if (tokenString.endsWith("i'")){
+		  tokenString = tokenString.replaceFirst("i'", "ì");
+	  }
+	  else if (tokenString.endsWith("e'")){
+		  tokenString = tokenString.replaceFirst("e'", "è");
+	  }
+	  else if (tokenString.endsWith("u'")){
+		  tokenString = tokenString.replaceFirst("u'", "ù");
+	  }
+	  else if (tokenString.endsWith("o'")){
+		  tokenString = tokenString.replaceFirst("o'", "ò");
 	  }
 	  return tokenString;
   }
