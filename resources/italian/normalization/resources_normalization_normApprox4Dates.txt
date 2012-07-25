@@ -9,7 +9,7 @@
 // LESS, BEFORE
 "[Pp]i(ù|u'|u) di","BEFORE"
 "[Nn]on meno di","ON_OR_BEFORE"
-"[Aa]l massimo","ON_OR_BEFORE"
+"([Aa]l|[Uu]n) massimo( di| de)?","ON_OR_BEFORE"
 "[Oo]ltre","BEFORE"
 // APPROX
 "[Cc]irca","APPROX"
@@ -20,6 +20,7 @@
 "[Aa]ppena","AFTER"
 "[Mm]eno di","AFTER"
 "[Nn]on pi(ù|u'|u) di","ON_OR_AFTER"
+"([Aa]l|[Uu]n) minimo( di| de)?","ON_OR_AFTER"
 "[Aa]lmeno","ON_OR_AFTER"
 
 // ADDITIONAL LEXICALS

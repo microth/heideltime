@@ -9,7 +9,7 @@
 // LESS, BEFORE
 "[Pp]i(ù|u'|u) di","MORE_THAN"
 "[Nn]on meno di","EQUAL_OR_MORE"
-"[Aa]l massimo","EQUAL_OR_MORE"
+"([Aa]l|[Uu]n) massimo( di| de)?","EQUAL_OR_MORE"
 "[Oo]ltre","MORE_THAN"
 // APPROX
 "[Cc]irca","APPROX"
@@ -25,6 +25,7 @@
 // ADDITIONAL LEXICALS
 // LESS
 "[Tt]utt'( )?al pi(ù|u'|u)","EQUAL_OR_LESS"
+"([Aa]l|[Uu]n) minimo( di| de)?","EQUAL_OR_MORE"
 // ABOUT
 "[Aa]ll'( )?incirca","APPROX"
 "[Ff]orse","APPROX"
