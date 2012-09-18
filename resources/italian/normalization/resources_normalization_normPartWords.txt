@@ -18,7 +18,7 @@
 "[Mm]itad del?","MID"
 // END
 "[Ff]inal(es)? del?","END"
-"[Ff]in(es)? del?","END"
+"[Ff]in(es?)? del?","END"
 "[Tt]arde","END"
 "[Mm]ás tarde","END"
 // OTHER
@@ -33,12 +33,14 @@
 "[Pp]rimi( di| della| dell'| del)?","START"
 "[Ll]'( )?alba( di| della| dell'| del)?","START"
 "[Aa]lba( di| della| dell'| del)?","START"
+"[Pp]rimera met(à|a'|a)","START"
+"[Pp]rincipio","START"
 // MID
 "[Mm]et(à|a')","MID"
 // END
 "[Ll]a fine( di| della| dell'| del)?","END"
 "[Ff]ine( di| della| dell'| del)?","END"
-"[Tt]ardo","END"
+"[Tt]ard[oa]","END"
 "[Uu]ltimi","END"
-
+"[Ss]econda met(à|a'|a)","END"
 

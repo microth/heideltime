@@ -5,16 +5,19 @@
 // FORMAT: one line is one disjunction of the pattern
 // ITALIAN
 // START
-[Ll]'[\\s]?inizio( di| della| dell'| del)?
+\b[Ll]'[\\s]?inizio( di| della| dell'| del)?
 [Ii]nizio( di| della| dell'| del)?
-[Ii] primi( di| della| dell'| del)?
+\b[Ii] primi( di| della| dell'| del)?
 [Pp]rimi( di| della| dell'| del)?
-[Ll]'[\\s]?alba( di| della| dell'| del)?
+\b[Ll]'[\\s]?alba( di| della| dell'| del)?
 [Aa]lba( di| della| dell'| del)?
+[Pp]rimera met(à|a'|a)
+[Pp]rincipio
 // MID
 [Mm]et(à|a'|a)
 // END
-[Ll]a fine( di| della| dell'| del)?
+\b[Ll]a fine( di| della| dell'| del)?
 [Ff]ine( di| della| dell'| del)?
-[Tt]ardo
+[Tt]ard[oa]
 [Uu]ltimi
+[Ss]econda met(à|a'|a)

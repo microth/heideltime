@@ -6,7 +6,7 @@
 // For example, the normalized value of "week" is "W"
 // FORMAT: "unit-word","normalized-unit-word"
 "[Gg]iornata lavorativa","D"
-"[Gg]iorn[oi] lavorativo","D"
+"[Gg]iorn[oi] lavorativ[oi]","D"
 "[Gg]iorn[oi] feriale","D"
 "[Gg]iorn[oi]","D"
 "[Ff]ine settimana","WE"
@@ -17,6 +17,6 @@
 "[Dd]ecennio","DE"
 "[Dd]ecade","DE"
 "[Ss]ecolo","CE"
-"[Hh]oras?","H"
-"[Mm]inutos?","M"
+"[Oo]r[ae]","H"
+"[Mm]inut[oi]","M"
 

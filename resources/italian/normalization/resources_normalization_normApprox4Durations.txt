@@ -30,6 +30,7 @@
 "[Aa]ll'( )?incirca","APPROX"
 "[Ff]orse","APPROX"
 "[Pp]i(ù|u'|u) o meno","APPROX"
+"[Qq]uasi","APPROX"
 // MORE
 "[Cc]ome minimo","EQUAL_OR_MORE"
 "[Pp]erlomeno","EQUAL_OR_MORE"

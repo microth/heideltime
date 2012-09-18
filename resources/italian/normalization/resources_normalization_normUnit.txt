@@ -7,10 +7,10 @@
 // minute and hours are not in the pattern file 
 // since they have to be normalized in another way than the other expressions
 // but they are needed here
-"[Mm]inutos?","minute"
-"[Hh]oras?","hour"
+"[Mm]inut[oe]","minute"
+"[Oo]r[ea]","hour"
 "[Gg]iornata lavorativa","day"
-"[Gg]iorn[oi] lavorativo","day"
+"[Gg]iorn[oi] lavorativ[oi]","day"
 "[Gg]iorn[oi] feriale","day"
 "[Gg]iorn[oi]","day"
 "[Ff]ine settimana","weekend"
