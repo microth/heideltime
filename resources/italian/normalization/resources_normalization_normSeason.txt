@@ -7,7 +7,11 @@
 // FORMAT: "season-word","normalized-season-word"
 // ITALIAN
 "[Pp]rimavera","SP"
+"[Pp]rimaverile","SP" 
 "[Ee]state","SU"
+"[Ee]stiv[oa]","SU"
 "[Aa]utunno","FA"
+"[Aa]utunnale","FA"
 "[Ii]nverno","WI"
 "[Vv]erno","WI"
+"[Ii]nvernale","WI"

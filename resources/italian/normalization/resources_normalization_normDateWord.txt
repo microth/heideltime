@@ -5,8 +5,10 @@
 // according to TIMEX3 format.
 // For example, the normalized value of "tomorrow" is "UNDEF-next-day"
 // FORMAT: "date-word","normalized-date-word"
+"[Aa] questo punto","PRESENT_REF"
 "[Aa]ttualmente","PRESENT_REF"
 "[Aa]desso","PRESENT_REF"
+"[Pp]er ora","PRESENT_REF"
 "[Aa]vantieri","UNDEF-this-day-LESS-2"
 "[Aa]vant'ieri","UNDEF-this-day-LESS-2"
 "[Ii]eri l'altro","UNDEF-this-day-LESS-2"
@@ -24,3 +26,4 @@
 "[Dd]i fresco","PAST_REF"
 "[Dd]i recente","PAST_REF"
 "[Uu]ltimamente","PAST_REF"
+"[Uu]n domani","FUTURE_REF"

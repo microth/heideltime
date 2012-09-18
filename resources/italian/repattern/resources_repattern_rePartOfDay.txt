@@ -19,3 +19,5 @@
 [Nn]ottata
 [Mm]ezzanotte
 [Nn]otte
+// DAYTIME
+[Gg]iornata

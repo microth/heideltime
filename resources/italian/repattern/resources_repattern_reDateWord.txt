@@ -4,6 +4,7 @@
 // This file contains regular expression patterns for date words.
 // FORMAT: one line is one disjunction of the pattern
 // THESE EXPRESSIONS ARE ALL IMPLICITS
+\b[Aa] questo punto
 [Aa]ttualmente
 [Aa]desso
 [Aa]vantieri
@@ -17,10 +18,12 @@
 [Oo]ggigiorno
 [Oo]ggi
 [Dd]opodomani
+[Pp]er ora
 [Pp]osdomani
 [Dd]omani
 [Rr]ecentemente
 [Dd]i fresco
 [Dd]i recente
 [Uu]ltimamente
+\b[Uu]n domani
 

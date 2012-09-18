@@ -4,9 +4,9 @@
 // This file contains regular expression patterns for set words.
 // FORMAT: one line is one disjunction of the pattern
 [Aa]ll'( )?anno
-[Ll]'( )?anno
+//[Ll]'( )?anno
 [Aa]nnuale
-[Aa]nnualmente 
+[Aa]nnualmente
 [Aa]nnu[oa]
 [Pp]er anno
 [Mm]ensile
@@ -15,8 +15,8 @@
 [Dd]i tutti i giorni
 [Gg]iornalier[oa]
 [Gg]iornalmente
-[Qq]uotidianamente	 
+[Qq]uotidianamente
 [Aa](lla)? settimana	 
 [Ee]bdomadari[oa]
 [Ss]ettimanale
-[Ss]ettimanalmente    
+[Ss]ettimanalmente

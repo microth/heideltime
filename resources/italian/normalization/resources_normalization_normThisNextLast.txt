@@ -21,8 +21,13 @@
 "[Úú]ltim[oa]s?","last"
 // ITALIAN
 // THIS
-"[Qq]uest[oa]","this"
+"[Qq]uest[oa']","this"
+"[Ii]n cors[oa]","this"
 // NEXT
 "[Pp]rossim[oa]","next"
 // LAST
 "[Ss]cors[oa]","last"
+"[Qq]uest[oa'][\s]?ultim[oa]","last"
+"[Uu]ltim[oa]","last"
+"[Pp]assat[oa]","last"
+"[Pp]recedente","last"

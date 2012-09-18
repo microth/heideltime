@@ -28,5 +28,7 @@
 [Pp]er lo meno
 [Qq]uantomeno
 [Qq]uanto meno
+[Qq]uasi
+
 
 
