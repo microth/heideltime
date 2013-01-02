@@ -16,8 +16,9 @@ public enum Language {
 	DUTCH		("dutch", "dutch", "dutch", ""),
 	ENGLISHCOLL	("englishcoll", "englishcoll", "english", "-e"),
 	ENGLISHSCI	("englishsci", "englishsci", "english", "-e"),
-	//ITALIAN		("italian", "italian", "italian", "-i"),
-	//FRENCH		("french", "french", "french", "-f"),
+	ITALIAN		("italian", "italian", "italian", "-i"),
+	FRENCH		("french", "french", "french", "-f"),
+	VIETNAMESE	("vietnamese", "vietnamese", "english", ""),
 	WILDCARD	("", "", "", ""), // if no match was found, this gets filled with parameter
 	; // ends the enum element list
 	
