@@ -30,7 +30,6 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import de.unihd.dbs.uima.annotator.heideltime.ProcessorManager.Priority;
-import de.unihd.dbs.uima.annotator.heideltime.resources.GenericResourceManager;
 import de.unihd.dbs.uima.annotator.heideltime.resources.Language;
 import de.unihd.dbs.uima.annotator.heideltime.resources.NormalizationManager;
 import de.unihd.dbs.uima.annotator.heideltime.resources.RePatternManager;
@@ -136,25 +135,20 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 		find_durations = (Boolean) aContext.getConfigParameterValue(PARAM_DURATION);
 		find_sets      = (Boolean) aContext.getConfigParameterValue(PARAM_SET);
 
-		//////////////////////////////////////////
-		// SET LANGUAGE FOR RESOURCE PROCESSING //
-		//////////////////////////////////////////
-		GenericResourceManager.LANGUAGE = language.getResourceFolder();
-
 		////////////////////////////////////////////////////////////
 		// READ NORMALIZATION RESOURCES FROM FILES AND STORE THEM //
 		////////////////////////////////////////////////////////////
-		NormalizationManager.getInstance();
+		NormalizationManager.getInstance(language);
 		
 		//////////////////////////////////////////////////////
 		// READ PATTERN RESOURCES FROM FILES AND STORE THEM //
 		//////////////////////////////////////////////////////
-		RePatternManager.getInstance();
+		RePatternManager.getInstance(language);
 	
 		///////////////////////////////////////////////////
 		// READ RULE RESOURCES FROM FILES AND STORE THEM //
 		///////////////////////////////////////////////////
-		RuleManager.getInstance();
+		RuleManager.getInstance(language);
 		
 		/////////////////////////////////////////////////////////////////////////////////
 		// SUBPROCESSOR CONFIGURATION. REGISTER YOUR OWN PROCESSORS HERE FOR EXECUTION //
@@ -179,7 +173,9 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 		// run preprocessing processors
 		procMan.executeProcessors(jcas, Priority.PREPROCESSING);
 		
-		RuleManager rulem = RuleManager.getInstance();
+		RuleManager rulem = RuleManager.getInstance(language);
+		
+		timexID = 1; // reset counter once per document processing
 
 		timex_counter = 0;
 		
@@ -340,7 +336,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 	 */
 	@SuppressWarnings("unused")
 	public void specifyAmbiguousValues(JCas jcas) {
-		NormalizationManager norm = NormalizationManager.getInstance();
+		NormalizationManager norm = NormalizationManager.getInstance(language);
 
 		// build up a list with all found TIMEX expressions
 		List<Timex3> linearDates = new ArrayList<Timex3>();
@@ -514,7 +510,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 				}
 			}
 			// get the last tense (depending on the part of speech tags used in front or behind the expression)
-			String last_used_tense = ContextAnalyzer.getLastTense(t_i, jcas);
+			String last_used_tense = ContextAnalyzer.getLastTense(t_i, jcas, language);
 
 			//////////////////////////
 			// DISAMBIGUATION PHASE //
@@ -549,7 +545,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					}
 					// WITHOUT DOCUMENT CREATION TIME
 					else {
-						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year");
+						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year", language);
 					}
 				}
 				// vi has quaurter
@@ -590,7 +586,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					}
 					// WITHOUT DOCUMENT CREATION TIME
 					else {
-						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year");
+						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year", language);
 					}
 				}
 				// vi has half
@@ -631,7 +627,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					}
 					// WITHOUT DOCUMENT CREATION TIME
 					else {
-						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year");
+						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year", language);
 					}
 				}
 				
@@ -644,7 +640,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					}
 					// WITHOUT DOCUMENT CREATION TIME
 					else {
-						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year");
+						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year", language);
 					}
 				}
 				// vi has week
@@ -655,7 +651,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					}
 					// WITHOUT DOCUMENT CREATION TIME
 					else {
-						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year");
+						newYearValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "year", language);
 					}
 				}
 
@@ -721,7 +717,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 				}
 				// NARRATIVE DOCUMENTS
 				else {
-					newCenturyValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "century");
+					newCenturyValue = ContextAnalyzer.getLastMentionedX(linearDates, i, "century", language);
 				}
 				if (newCenturyValue.equals("")) {
 					// always assume that sixties, twenties, and so on are 19XX (changed 2011-09-08)
@@ -731,7 +727,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					valueNew = value_i.replaceFirst("UNDEF-century", newCenturyValue+"");
 				}
 				// always assume that sixties, twenties, and so on are 19XX (changed 2011-09-08)
-				if (valueNew.matches("\\d\\d\\dX")) {
+				if (valueNew.matches("\\d\\d\\d")) {
 					valueNew = "19" + valueNew.substring(2);
 				}
 			}
@@ -839,7 +835,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 							
 							// check for REFUNIT (only allowed for "year")
 							if ((ltn.equals("REFUNIT")) && (unit.equals("year"))) {
-								String dateWithYear = ContextAnalyzer.getLastMentionedX(linearDates, i, "dateYear");
+								String dateWithYear = ContextAnalyzer.getLastMentionedX(linearDates, i, "dateYear", language);
 								if (dateWithYear.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX");
 								} else {
@@ -862,16 +858,16 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									} else if (op.equals("PLUS")) {
 										century = dctCentury + diff;
 									}
-									valueNew = valueNew.replace(checkUndef, century+"XX");
+									valueNew = valueNew.replace(checkUndef, century+"");
 								} else {
-									String lmCentury = ContextAnalyzer.getLastMentionedX(linearDates, i, "century");
+									String lmCentury = ContextAnalyzer.getLastMentionedX(linearDates, i, "century", language);
 									if (lmCentury.equals("")) {
-										valueNew = valueNew.replace(checkUndef, "XX");
+										valueNew = valueNew.replace(checkUndef, "");
 									} else {
 										if (op.equals("MINUS")) {
-											lmCentury = Integer.parseInt(lmCentury) - diff + "XX";
+											lmCentury = Integer.parseInt(lmCentury) - diff + "";
 										} else if (op.equals("PLUS")) {
-											lmCentury = Integer.parseInt(lmCentury) + diff + "XX";	
+											lmCentury = Integer.parseInt(lmCentury) + diff + "";	
 										}
 										valueNew = valueNew.replace(checkUndef, lmCentury);
 									}
@@ -886,14 +882,14 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									}
 									valueNew = valueNew.replace(checkUndef, decade+"X");
 								} else {
-									String lmDecade = ContextAnalyzer.getLastMentionedX(linearDates, i, "decade");
+									String lmDecade = ContextAnalyzer.getLastMentionedX(linearDates, i, "decade", language);
 									if (lmDecade.equals("")) {
 										valueNew = valueNew.replace(checkUndef, "XXX");
 									} else {
 										if (op.equals("MINUS")) {
-											lmDecade = Integer.parseInt(lmDecade) - diff + "X";
+											lmDecade = Integer.parseInt(lmDecade) - diff + "";
 										} else if (op.equals("PLUS")) {
-											lmDecade = Integer.parseInt(lmDecade) + diff + "X";
+											lmDecade = Integer.parseInt(lmDecade) + diff + "";
 										}
 										valueNew = valueNew.replace(checkUndef, lmDecade);
 									}
@@ -908,7 +904,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									}
 									valueNew = valueNew.replace(checkUndef, intValue + "");
 								} else {
-									String lmYear = ContextAnalyzer.getLastMentionedX(linearDates, i, "year");
+									String lmYear = ContextAnalyzer.getLastMentionedX(linearDates, i, "year", language);
 									if (lmYear.equals("")) {
 										valueNew = valueNew.replace(checkUndef, "XXXX");
 									} else {
@@ -936,7 +932,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									intQuarter = intQuarter + diffQuarters; 
 									valueNew = valueNew.replace(checkUndef, intYear+"-Q"+intQuarter);
 								} else {
-									String lmQuarter = ContextAnalyzer.getLastMentionedX(linearDates, i, "quarter");
+									String lmQuarter = ContextAnalyzer.getLastMentionedX(linearDates, i, "quarter", language);
 									if (lmQuarter.equals("")) {
 										valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 									} else {
@@ -961,7 +957,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									}
 									valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextMonth(dctYear + "-" + norm.getFromNormNumber(dctMonth+""), diff));
 								} else {
-									String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates, i, "month");
+									String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates, i, "month", language);
 									if (lmMonth.equals("")) {
 										valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 									} else {
@@ -974,13 +970,13 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 							} else if (unit.equals("week")) {
 								if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable) && (ltn.equals("this"))) {
 									if (op.equals("MINUS")) {
-										diff = diff * 7 * (-1);
+										diff = diff * (-1);
 									} else if (op.equals("PLUS")) {
-										diff = diff * 7;
+										// diff = diff * 7;
 									}
-									valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextDay(dctYear + "-" + norm.getFromNormNumber(dctMonth+"") + "-"	+ dctDay, diff));
+									valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(dctYear+"-W"+norm.getFromNormNumber(dctWeek+""), diff, language));
 								} else {
-									String lmDay = ContextAnalyzer.getLastMentionedX(linearDates, i, "day");
+									String lmDay = ContextAnalyzer.getLastMentionedX(linearDates, i, "day", language);
 									if (lmDay.equals("")) {
 										valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 									} else {
@@ -999,7 +995,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									}
 									valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextDay(dctYear + "-" + norm.getFromNormNumber(dctMonth+"") + "-"	+ dctDay, diff));
 								} else {
-									String lmDay = ContextAnalyzer.getLastMentionedX(linearDates, i, "day");
+									String lmDay = ContextAnalyzer.getLastMentionedX(linearDates, i, "day", language);
 									if (lmDay.equals("")) {
 										valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 									} else {
@@ -1018,37 +1014,37 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 				else if (value_i.startsWith("UNDEF-last-century")) {
 					String checkUndef = "UNDEF-last-century";
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
-						valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(dctCentury - 1 +"") + "XX");
+						valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(dctCentury - 1 +""));
 					} else {
-						String lmCentury = ContextAnalyzer.getLastMentionedX(linearDates,i,"century");
+						String lmCentury = ContextAnalyzer.getLastMentionedX(linearDates,i,"century", language);
 						if (lmCentury.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
-							valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(Integer.parseInt(lmCentury) - 1 +"") + "XX");
+							valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(Integer.parseInt(lmCentury) - 1 +""));
 						}
 					}
 				} else if (value_i.startsWith("UNDEF-this-century")) {
 					String checkUndef = "UNDEF-this-century";
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
-						valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(dctCentury+"") + "XX");
+						valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(dctCentury+""));
 					} else {
-						String lmCentury = ContextAnalyzer.getLastMentionedX(linearDates,i,"century");
+						String lmCentury = ContextAnalyzer.getLastMentionedX(linearDates,i,"century", language);
 						if (lmCentury.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
-							valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(Integer.parseInt(lmCentury)+"") + "XX");
+							valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(Integer.parseInt(lmCentury)+""));
 						}
 					}
 				} else if (value_i.startsWith("UNDEF-next-century")) {
 					String checkUndef = "UNDEF-next-century";
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
-						valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(dctCentury + 1+"") + "XX");
+						valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(dctCentury + 1+""));
 					} else {
-						String lmCentury = ContextAnalyzer.getLastMentionedX(linearDates,i,"century");
+						String lmCentury = ContextAnalyzer.getLastMentionedX(linearDates,i,"century", language);
 						if (lmCentury.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
-							valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(Integer.parseInt(lmCentury) + 1+"") + "XX");
+							valueNew = valueNew.replace(checkUndef, norm.getFromNormNumber(Integer.parseInt(lmCentury) + 1+""));
 						}
 					}
 				}
@@ -1057,37 +1053,37 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 				else if (value_i.startsWith("UNDEF-last-decade")) {
 					String checkUndef = "UNDEF-last-decade";
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
-						valueNew = valueNew.replace(checkUndef, (dctYear - 10+"").substring(0,3)+"X");
+						valueNew = valueNew.replace(checkUndef, (dctYear - 10+"").substring(0,3));
 					} else {
-						String lmDecade = ContextAnalyzer.getLastMentionedX(linearDates,i,"decade");
+						String lmDecade = ContextAnalyzer.getLastMentionedX(linearDates,i,"decade", language);
 						if (lmDecade.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
-							valueNew = valueNew.replace(checkUndef, Integer.parseInt(lmDecade)-1+"X");
+							valueNew = valueNew.replace(checkUndef, Integer.parseInt(lmDecade)-1+"");
 						}
 					}
 				} else if (value_i.startsWith("UNDEF-this-decade")) {
 					String checkUndef = "UNDEF-this-decade";
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
-						valueNew = valueNew.replace(checkUndef, (dctYear+"").substring(0,3)+"X");
+						valueNew = valueNew.replace(checkUndef, (dctYear+"").substring(0,3));
 					} else {
-						String lmDecade = ContextAnalyzer.getLastMentionedX(linearDates,i,"decade");
+						String lmDecade = ContextAnalyzer.getLastMentionedX(linearDates,i,"decade", language);
 						if (lmDecade.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
-							valueNew = valueNew.replace(checkUndef, lmDecade+"X");						
+							valueNew = valueNew.replace(checkUndef, lmDecade);						
 						}
 					}
 				} else if (value_i.startsWith("UNDEF-next-decade")) {
 					String checkUndef = "UNDEF-next-decade";
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
-						valueNew = valueNew.replace(checkUndef, (dctYear + 10+"").substring(0,3)+"X");
+						valueNew = valueNew.replace(checkUndef, (dctYear + 10+"").substring(0,3));
 					} else {
-						String lmDecade = ContextAnalyzer.getLastMentionedX(linearDates,i,"decade");
+						String lmDecade = ContextAnalyzer.getLastMentionedX(linearDates,i,"decade", language);
 						if (lmDecade.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
-							valueNew = valueNew.replace(checkUndef, Integer.parseInt(lmDecade)+1+"X");
+							valueNew = valueNew.replace(checkUndef, Integer.parseInt(lmDecade)+1+"");
 						}
 					}
 				}
@@ -1098,7 +1094,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, dctYear -1 +"");
 					} else {
-						String lmYear = ContextAnalyzer.getLastMentionedX(linearDates,i,"year");
+						String lmYear = ContextAnalyzer.getLastMentionedX(linearDates,i,"year", language);
 						if (lmYear.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
@@ -1110,7 +1106,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, dctYear +"");
 					} else {
-						String lmYear = ContextAnalyzer.getLastMentionedX(linearDates,i,"year");
+						String lmYear = ContextAnalyzer.getLastMentionedX(linearDates,i,"year", language);
 						if (lmYear.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
@@ -1122,7 +1118,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, dctYear +1 +"");	
 					} else {
-						String lmYear = ContextAnalyzer.getLastMentionedX(linearDates,i,"year");
+						String lmYear = ContextAnalyzer.getLastMentionedX(linearDates,i,"year", language);
 						if (lmYear.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX");
 						} else {
@@ -1137,7 +1133,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextMonth(dctYear + "-" + norm.getFromNormNumber(dctMonth+""), -1));
 					} else {
-						String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates,i,"month");
+						String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates,i,"month", language);
 						if (lmMonth.equals("")) {
 							valueNew =  valueNew.replace(checkUndef, "XXXX-XX");
 						} else {
@@ -1149,7 +1145,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, dctYear + "-" + norm.getFromNormNumber(dctMonth+""));
 					} else {
-						String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates,i,"month");
+						String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates,i,"month", language);
 						if (lmMonth.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 						} else { 
@@ -1162,7 +1158,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextMonth(dctYear + "-" + norm.getFromNormNumber(dctMonth+""), 1));
 					} else {
-						String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates,i,"month");
+						String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates,i,"month", language);
 						if (lmMonth.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 						} else {
@@ -1177,7 +1173,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextDay(dctYear + "-" + norm.getFromNormNumber(dctMonth+"") + "-"+ dctDay, -1));
 					} else {
-						String lmDay = ContextAnalyzer.getLastMentionedX(linearDates,i,"day");
+						String lmDay = ContextAnalyzer.getLastMentionedX(linearDates,i,"day", language);
 						if (lmDay.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 						} else {
@@ -1189,7 +1185,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, dctYear + "-" + norm.getFromNormNumber(dctMonth+"") + "-"+ norm.getFromNormNumber(dctDay+""));
 					} else {
-						String lmDay = ContextAnalyzer.getLastMentionedX(linearDates,i,"day");
+						String lmDay = ContextAnalyzer.getLastMentionedX(linearDates,i,"day", language);
 						if (lmDay.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 						} else {
@@ -1205,7 +1201,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextDay(dctYear + "-" + norm.getFromNormNumber(dctMonth+"") + "-"+ dctDay, 1));
 					} else {
-						String lmDay = ContextAnalyzer.getLastMentionedX(linearDates,i,"day");
+						String lmDay = ContextAnalyzer.getLastMentionedX(linearDates,i,"day", language);
 						if (lmDay.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 						} else {
@@ -1218,13 +1214,13 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 				else if (value_i.startsWith("UNDEF-last-week")) {
 					String checkUndef = "UNDEF-last-week";
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
-						valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(dctYear+"-W"+norm.getFromNormNumber(dctWeek+""),-1));
+						valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(dctYear+"-W"+norm.getFromNormNumber(dctWeek+""),-1, language));
 					} else {
-						String lmWeek = ContextAnalyzer.getLastMentionedX(linearDates,i,"week");
+						String lmWeek = ContextAnalyzer.getLastMentionedX(linearDates,i,"week", language);
 						if (lmWeek.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-WXX");
 						} else {
-							valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(lmWeek,-1));
+							valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(lmWeek,-1, language));
 						}
 					}
 				} else if (value_i.startsWith("UNDEF-this-week")) {
@@ -1232,7 +1228,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef,dctYear+"-W"+norm.getFromNormNumber(dctWeek+""));
 					} else {
-						String lmWeek = ContextAnalyzer.getLastMentionedX(linearDates,i,"week");
+						String lmWeek = ContextAnalyzer.getLastMentionedX(linearDates,i,"week", language);
 						if (lmWeek.equals("")) {
 							valueNew = valueNew.replace(checkUndef,"XXXX-WXX");
 						} else {
@@ -1242,13 +1238,13 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 				} else if (value_i.startsWith("UNDEF-next-week")) {
 					String checkUndef = "UNDEF-next-week";
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
-						valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(dctYear+"-W"+norm.getFromNormNumber(dctWeek+""),1));
+						valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(dctYear+"-W"+norm.getFromNormNumber(dctWeek+""),1, language));
 					} else {
-						String lmWeek = ContextAnalyzer.getLastMentionedX(linearDates,i,"week");
+						String lmWeek = ContextAnalyzer.getLastMentionedX(linearDates,i,"week", language);
 						if (lmWeek.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-WXX");
 						} else {
-							valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(lmWeek,1));
+							valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextWeek(lmWeek,1, language));
 						}
 					}
 				}
@@ -1264,7 +1260,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 							valueNew = valueNew.replace(checkUndef, dctYear+"-Q"+newQuarter);
 						}
 					} else {
-						String lmQuarter  = ContextAnalyzer.getLastMentionedX(linearDates, i, "quarter");
+						String lmQuarter  = ContextAnalyzer.getLastMentionedX(linearDates, i, "quarter", language);
 						if (lmQuarter.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-QX");
 						} else {
@@ -1283,7 +1279,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 					if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 						valueNew = valueNew.replace(checkUndef, dctYear+"-"+dctQuarter);
 					} else {
-						String lmQuarter = ContextAnalyzer.getLastMentionedX(linearDates, i, "quarter");
+						String lmQuarter = ContextAnalyzer.getLastMentionedX(linearDates, i, "quarter", language);
 						if (lmQuarter.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-QX");
 						} else {
@@ -1300,7 +1296,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 							valueNew = valueNew.replace(checkUndef, dctYear+"-Q"+newQuarter);
 						}						
 					} else {
-						String lmQuarter  = ContextAnalyzer.getLastMentionedX(linearDates, i, "quarter");
+						String lmQuarter  = ContextAnalyzer.getLastMentionedX(linearDates, i, "quarter", language);
 						if (lmQuarter.equals("")) {
 							valueNew = valueNew.replace(checkUndef, "XXXX-QX");
 						} else {
@@ -1345,7 +1341,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									valueNew = valueNew.replace(checkUndef, dctYear+"-"+newMonth);
 								}
 							} else {
-								String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates, i, "month-with-details");
+								String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates, i, "month-with-details", language);
 								if (lmMonth.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 								} else {
@@ -1374,7 +1370,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 							if ((documentTypeNews||documentTypeColloquial||documentTypeScientific) && (dctAvailable)) {
 								valueNew = valueNew.replace(checkUndef, dctYear+"-"+newMonth);
 							} else {
-								String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates, i, "month-with-details");
+								String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates, i, "month-with-details", language);
 								if (lmMonth.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 								} else {
@@ -1398,7 +1394,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									valueNew = valueNew.replace(checkUndef, dctYear+"-"+newMonth);
 								}
 							} else {
-								String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates, i, "month-with-details");
+								String lmMonth = ContextAnalyzer.getLastMentionedX(linearDates, i, "month-with-details", language);
 								if (lmMonth.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 								} else {
@@ -1440,11 +1436,16 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									if (newSeason.equals("WI")) {
 										valueNew = valueNew.replace(checkUndef, dctYear-1+"-"+newSeason);
 									} else {
-										valueNew = valueNew.replace(checkUndef, dctYear+"-"+newSeason);
+										if (dctMonth < 12){
+											valueNew = valueNew.replace(checkUndef, dctYear-1+"-"+newSeason);
+										}
+										else{
+											valueNew = valueNew.replace(checkUndef, dctYear+"-"+newSeason);
+										}
 									}
 								}
 							} else { // NARRATVIE DOCUMENT
-								String lmSeason = ContextAnalyzer.getLastMentionedX(linearDates, i, "season");
+								String lmSeason = ContextAnalyzer.getLastMentionedX(linearDates, i, "season", language);
 								if (lmSeason.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 								} else {
@@ -1477,7 +1478,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 								valueNew = valueNew.replace(checkUndef, dctYear+"-"+newSeason);
 							} else {
 								// TODO include tense of sentence?
-								String lmSeason = ContextAnalyzer.getLastMentionedX(linearDates, i, "season");
+								String lmSeason = ContextAnalyzer.getLastMentionedX(linearDates, i, "season", language);
 								if (lmSeason.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 								} else {
@@ -1508,7 +1509,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									valueNew = valueNew.replace(checkUndef, dctYear+1+"-"+newSeason);
 								}
 							} else { // NARRATIVE DOCUMENT
-								String lmSeason = ContextAnalyzer.getLastMentionedX(linearDates, i, "season");
+								String lmSeason = ContextAnalyzer.getLastMentionedX(linearDates, i, "season", language);
 								if (lmSeason.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX");
 								} else {
@@ -1556,7 +1557,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 								}
 								valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextDay(dctYear + "-" + dctMonth + "-" + dctDay, diff));
 							} else {
-								String lmDay     = ContextAnalyzer.getLastMentionedX(linearDates, i, "day");
+								String lmDay     = ContextAnalyzer.getLastMentionedX(linearDates, i, "day", language);
 								if (lmDay.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 								} else {
@@ -1582,7 +1583,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 								valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextDay(dctYear + "-" + dctMonth + "-"+ dctDay, diff));
 							} else {
 								// TODO tense should be included?!
-								String lmDay     = ContextAnalyzer.getLastMentionedX(linearDates, i, "day");
+								String lmDay     = ContextAnalyzer.getLastMentionedX(linearDates, i, "day", language);
 								if (lmDay.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 								} else {
@@ -1605,7 +1606,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 								}
 								valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextDay(dctYear + "-" + dctMonth + "-"+ dctDay, diff));
 							} else {
-								String lmDay     = ContextAnalyzer.getLastMentionedX(linearDates, i, "day");
+								String lmDay     = ContextAnalyzer.getLastMentionedX(linearDates, i, "day", language);
 								if (lmDay.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 								} else {
@@ -1628,7 +1629,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 									diff = 0;
 								}
 								//  Tense is FUTURE
-								if ((last_used_tense.equals("FUTURE")) || (last_used_tense.equals("PRESENTFUTURE"))) {
+								if ((last_used_tense.equals("FUTURE"))) {
 									diff = diff + 7;
 								}
 								// Tense is PAST
@@ -1638,7 +1639,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 								valueNew = valueNew.replace(checkUndef, DateCalculator.getXNextDay(dctYear + "-" + dctMonth + "-"+ dctDay, diff));
 							} else {
 								// TODO tense should be included?!
-								String lmDay     = ContextAnalyzer.getLastMentionedX(linearDates, i, "day");
+								String lmDay     = ContextAnalyzer.getLastMentionedX(linearDates, i, "day", language);
 								if (lmDay.equals("")) {
 									valueNew = valueNew.replace(checkUndef, "XXXX-XX-XX");
 								} else {
@@ -1774,7 +1775,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 							HashMap<String, String> hmQuant,
 							Sentence s,
 							JCas jcas) {
-		RuleManager rm = RuleManager.getInstance();
+		RuleManager rm = RuleManager.getInstance(language);
 		HashMap<String, String> hmDatePosConstraint = rm.getHmDatePosConstraint();
 		HashMap<String, String> hmDurationPosConstraint = rm.getHmDurationPosConstraint();
 		HashMap<String, String> hmTimePosConstraint = rm.getHmTimePosConstraint();
@@ -1884,7 +1885,7 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 	
 	
 	public String applyRuleFunctions(String tonormalize, MatchResult m) {
-		NormalizationManager norm = NormalizationManager.getInstance();
+		NormalizationManager norm = NormalizationManager.getInstance(language);
 		
 		String normalized = "";
 		// pattern for normalization functions + group information
