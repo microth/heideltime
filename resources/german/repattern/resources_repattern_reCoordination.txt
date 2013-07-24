@@ -1,0 +1,12 @@
+bis
+bzw\.?
+und
+oder
+sowie
+inkl(?:\.|usive|)
+\–
+-
+–
+-
+–
+/
