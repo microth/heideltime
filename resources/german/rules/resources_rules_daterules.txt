@@ -26,8 +26,8 @@ RULENAME="date_r0e",EXTRACTION="%reMonthNumber-%reDayNumber( \(.*?\))",NORM_VALU
 // date_r1
 // EXAMPLE r1a_1: 1.3.99
 // EXAMPLE r1b_1: 1.3.1999
-RULENAME="date_r1a",EXTRACTION="%reDayNumber[\.]\s*?(%reMonthNumber|%reRomanNumeral)[\.]\s*?%reYear2Digit",NORM_VALUE="UNDEF-centurygroup(5)-%normMonth(group(2))-%normDay(group(1))"
-RULENAME="date_r1b",EXTRACTION="%reDayNumber[\.]\s*?(%reMonthNumber|%reRomanNumeral)[\.]\s*?%reYear4Digit",NORM_VALUE="group(5)-%normMonth(group(2))-%normDay(group(1))"
+RULENAME="date_r1a",EXTRACTION="%reDayNumber[\.]\s*?(%reMonthNumber|%reMonthRomanNumeral)[\.]\s*?%reYear2Digit",NORM_VALUE="UNDEF-centurygroup(5)-%normMonth(group(2))-%normDay(group(1))"
+RULENAME="date_r1b",EXTRACTION="%reDayNumber[\.]\s*?(%reMonthNumber|%reMonthRomanNumeral)[\.]\s*?%reYear4Digit",NORM_VALUE="group(5)-%normMonth(group(2))-%normDay(group(1))"
 
 // date_r2 (keep though it is English date format)
 // EXAMPLE r2a_1: Februar 25, 2009
@@ -42,7 +42,7 @@ RULENAME="date_r2b",EXTRACTION="(%reMonthLong|%reMonthShort) %reDayNumber[\s]?, 
 // EXAMPLE r3a_3: 25 Feb. 2009
 // EXAMPLE r3a_4: 25. November des Jahres 2001
 // EXAMPLE r3a_1: 25 II. 2001
-RULENAME="date_r3a",EXTRACTION="%reDayNumber(?:\.| |\. )(%reMonthLong|%reMonthShort|%reRomanNumeral)( des Jahres| im Jahre)? %reYear4Digit",NORM_VALUE="group(7)-%normMonth(group(2))-%normDay(group(1))"
+RULENAME="date_r3a",EXTRACTION="%reDayNumber(?:\.| |\. )(%reMonthLong|%reMonthShort|%reMonthRomanNumeral)( des Jahres| im Jahre)? %reYear4Digit",NORM_VALUE="group(7)-%normMonth(group(2))-%normDay(group(1))"
 
 // date_r4
 // EXAMPLE r4a_1: November 19
@@ -52,28 +52,28 @@ RULENAME="date_r3a",EXTRACTION="%reDayNumber(?:\.| |\. )(%reMonthLong|%reMonthSh
 // EXAMPLE r4e_1: 19. und 20. Januar (find 19. Januar)
 // EXAMPLE r4f_1: 19. und 20. Januar (find 19. Januar)
 RULENAME="date_r4a",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayWordTh|%reDayNumberTh|%reDayNumber)",NORM_VALUE="UNDEF-year-%normMonth(group(1))-%normDay(group(4))"
-RULENAME="date_r4b",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)(?:\.| |\. )(%reMonthLong|%reMonthShort|%reRomanNumeral)",NORM_VALUE="UNDEF-year-%normMonth(group(5))-%normDay(group(1))"
+RULENAME="date_r4b",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)(?:\.| |\. )(%reMonthLong|%reMonthShort|%reMonthRomanNumeral)",NORM_VALUE="UNDEF-year-%normMonth(group(5))-%normDay(group(1))"
 RULENAME="date_r4c",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayWordTh|%reDayNumberTh|%reDayNumber)[\s]?%reCoordination?[\s]?(%reDayWordTh|%reDayNumberTh|%reDayNumber)",NORM_VALUE="UNDEF-year-%normMonth(group(1))-%normDay(group(9))",OFFSET="group(9)-group(9)"
-RULENAME="date_r4d",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)[\s]?%reCoordination?[\s]?(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)(?:\.| |\. )(%reMonthLong|%reMonthShort|%reRomanNumeral)",NORM_VALUE="UNDEF-year-%normMonth(group(10))-%normDay(group(1))",OFFSET="group(1)-group(1)"
-RULENAME="date_r4e",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)[\s]?%reCoordination?[\s]?(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)(?:\.| |\. )(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear4Digit",NORM_VALUE="group(14)-%normMonth(group(10))-%normDay(group(1))",OFFSET="group(1)-group(1)"
-RULENAME="date_r4f",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)[\s]?%reCoordination?[\s]?(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)(?:\.| |\. )(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear2Digit",NORM_VALUE="UNDEF-centurygroup(14)-%normMonth(group(10))-%normDay(group(1))",OFFSET="group(1)-group(1)"
+RULENAME="date_r4d",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)[\s]?%reCoordination?[\s]?(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)(?:\.| |\. )(%reMonthLong|%reMonthShort|%reMonthRomanNumeral)",NORM_VALUE="UNDEF-year-%normMonth(group(10))-%normDay(group(1))",OFFSET="group(1)-group(1)"
+RULENAME="date_r4e",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)[\s]?%reCoordination?[\s]?(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)(?:\.| |\. )(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear4Digit",NORM_VALUE="group(14)-%normMonth(group(10))-%normDay(group(1))",OFFSET="group(1)-group(1)"
+RULENAME="date_r4f",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)[\s]?%reCoordination?[\s]?(%reDayWordTh|%reDayNumberTh|%reDayNumber[\.]?)(?:\.| |\. )(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear2Digit",NORM_VALUE="UNDEF-centurygroup(14)-%normMonth(group(10))-%normDay(group(1))",OFFSET="group(1)-group(1)"
 
 
 // date_r5
 // EXAMPLE r5a_1: Freitag Oktober 13
 // EXAMPLE r5b_1: Freitag 13. Oktober
-RULENAME="date_r5a",EXTRACTION="%reWeekday[,]? (%reMonthLong|%reMonthShort|%reRomanNumeral) (%reDayWordTh|%reDayNumberTh|%reDayNumber)",NORM_VALUE="UNDEF-year-%normMonth(group(2))-%normDay(group(6))"
-RULENAME="date_r5b",EXTRACTION="%reWeekday[,]? (%reDayWordTh|%reDayNumberTh|%reDayNumber)[\.]?(?:\.| |\. )(%reMonthLong|%reMonthShort|%reRomanNumeral)",NORM_VALUE="UNDEF-year-%normMonth(group(6))-%normDay(group(2))"
+RULENAME="date_r5a",EXTRACTION="%reWeekday[,]? (%reMonthLong|%reMonthShort|%reMonthRomanNumeral) (%reDayWordTh|%reDayNumberTh|%reDayNumber)",NORM_VALUE="UNDEF-year-%normMonth(group(2))-%normDay(group(6))"
+RULENAME="date_r5b",EXTRACTION="%reWeekday[,]? (%reDayWordTh|%reDayNumberTh|%reDayNumber)[\.]?(?:\.| |\. )(%reMonthLong|%reMonthShort|%reMonthRomanNumeral)",NORM_VALUE="UNDEF-year-%normMonth(group(6))-%normDay(group(2))"
 
 // date_r6
 // EXAMPLE r6a_1: 14. und 15. September 2010 (find: 14. September 2010)
 // EXAMPLE r6b_1: 14. und 15. September 98 (find: 14. September 98)
-RULENAME="date_r6a",EXTRACTION="(%reDayNumberTh|%reDayNumber)[\.]?[\s]?%reCoordination?[\s]?(%reDayNumberTh|%reDayNumber)[\.]?(?:\.| |\. )(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear4Digit",NORM_VALUE="group(12)-%normMonth(group(8))-%normDay(group(1))",OFFSET="group(1)-group(1)"
-RULENAME="date_r6b",EXTRACTION="(%reDayNumberTh|%reDayNumber)[\.]?[\s]?%reCoordination?[\s]?(%reDayNumberTh|%reDayNumber)[\.]?(?:\.| |\. )(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear2Digit",NORM_VALUE="UNDEF-centurygroup(12)-%normMonth(group(8))-%normDay(group(1))",OFFSET="group(1)-group(1)"
+RULENAME="date_r6a",EXTRACTION="(%reDayNumberTh|%reDayNumber)[\.]?[\s]?%reCoordination?[\s]?(%reDayNumberTh|%reDayNumber)[\.]?(?:\.| |\. )(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear4Digit",NORM_VALUE="group(12)-%normMonth(group(8))-%normDay(group(1))",OFFSET="group(1)-group(1)"
+RULENAME="date_r6b",EXTRACTION="(%reDayNumberTh|%reDayNumber)[\.]?[\s]?%reCoordination?[\s]?(%reDayNumberTh|%reDayNumber)[\.]?(?:\.| |\. )(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear2Digit",NORM_VALUE="UNDEF-centurygroup(12)-%normMonth(group(8))-%normDay(group(1))",OFFSET="group(1)-group(1)"
 
 // date_r7
 // EXAMPLE r7a_1: Friday Oktober 13 2009
-RULENAME="date_r7a",EXTRACTION="%reWeekday[,]? (%reMonthLong|%reMonthShort|%reRomanNumeral) (%reDayWordTh|%reDayNumberTh|%reDayNumber)[,]? %reYear4Digit",NORM_VALUE="group(10)-%normMonth(group(2))-%normDay(group(6))"
+RULENAME="date_r7a",EXTRACTION="%reWeekday[,]? (%reMonthLong|%reMonthShort|%reMonthRomanNumeral) (%reDayWordTh|%reDayNumberTh|%reDayNumber)[,]? %reYear4Digit",NORM_VALUE="group(10)-%normMonth(group(2))-%normDay(group(6))"
 
 // date_r8
 // EXAMPLE 8a_1: tomorrow
@@ -92,10 +92,10 @@ RULENAME="date_r9a",EXTRACTION="%reWeekday",NORM_VALUE="UNDEF-day-%normWeekday(g
 // EXAMPLE r10b_1: Mai und Juni 2011 (find Mai 2001)
 // EXAMPLE r10c_1: November 92
 // EXAMPLE r10d_1: Mai und Juni 11 (find Mai 2001)
-RULENAME="date_r10a",EXTRACTION="(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear4Digit",NORM_VALUE="group(5)-%normMonth(group(1))"
-RULENAME="date_r10b",EXTRACTION="(%reMonthLong|%reMonthShort|%reRomanNumeral)[\s]?%reCoordination[\s]?(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear4Digit",NORM_VALUE="group(10)-%normMonth(group(1))",OFFSET="group(1)-group(1)"
-RULENAME="date_r10c",EXTRACTION="(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear2Digit",NORM_VALUE="UNDEF-centurygroup(5)-%normMonth(group(1))"
-RULENAME="date_r10d",EXTRACTION="(%reMonthLong|%reMonthShort|%reRomanNumeral)[\s]?%reCoordination[\s]?(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear2Digit",NORM_VALUE="UNDEF-centurygroup(10)-%normMonth(group(1))",OFFSET="group(1)-group(1)"
+RULENAME="date_r10a",EXTRACTION="(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear4Digit",NORM_VALUE="group(5)-%normMonth(group(1))"
+RULENAME="date_r10b",EXTRACTION="(%reMonthLong|%reMonthShort|%reMonthRomanNumeral)[\s]?%reCoordination[\s]?(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear4Digit",NORM_VALUE="group(10)-%normMonth(group(1))",OFFSET="group(1)-group(1)"
+RULENAME="date_r10c",EXTRACTION="(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear2Digit",NORM_VALUE="UNDEF-centurygroup(5)-%normMonth(group(1))"
+RULENAME="date_r10d",EXTRACTION="(%reMonthLong|%reMonthShort|%reMonthRomanNumeral)[\s]?%reCoordination[\s]?(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear2Digit",NORM_VALUE="UNDEF-centurygroup(10)-%normMonth(group(1))",OFFSET="group(1)-group(1)"
 
 // date_r11
 // EXAMPLE r11a_1: November diesen Jahres
@@ -262,4 +262,4 @@ RULENAME="date_r1e_negative",EXTRACTION="%reYear4Digit ([\S]+) ([\S]+)",NORM_VAL
 RULENAME="date_r1f_negative",EXTRACTION="%reYear4Digit (m |km |ft |yr |dg |cm |ha |sq )",NORM_VALUE="REMOVE"
 // do not extract expressions of type "August Strindberg" if Strindberg is a proper noun
 RULENAME="date_r1g_negative",EXTRACTION="(April|Juli|August) ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):NE:"
-RULENAME="date_r1h_negative",EXTRACTION="(%reMonthLong|%reMonthShort|%reRomanNumeral) %reYear2Digit (\S+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(6):NN:"
+RULENAME="date_r1h_negative",EXTRACTION="(%reMonthLong|%reMonthShort|%reMonthRomanNumeral) %reYear2Digit (\S+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(6):NN:"
