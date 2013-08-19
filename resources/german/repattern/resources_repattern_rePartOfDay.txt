@@ -3,10 +3,10 @@
 // date:   2011-06-10
 // This file contains regular expression patterns for parts of days.
 // FORMAT: one line is one disjunction of the pattern
-[Vv]ormittag
-[Nn]achmittag
-[Mm]ittag
-[Mm]itternacht
+[Vv]or[\–\-\–\-\–]?mit[\–\-\–\-\–]?tag
+[Nn]ach[\–\-\–\-\–]?mit[\–\-\–\-\–]?tag
+[Mm]it[\–\-\–\-\–]?tag
+[Mm]it[\–\-\–\-\–]?ter[\–\-\–\-\–]?nacht
 [Nn]acht
-[Mm]orgen
+[Mm]or[\–\-\–\-\–]?gen
 [Aa]bend

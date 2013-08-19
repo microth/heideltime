@@ -2,7 +2,7 @@ bis
 bzw\.?
 und
 oder
-sowie
+so[\–\-\–\-\–]?wie
 inkl(?:\.|usive|)
 \–
 \-

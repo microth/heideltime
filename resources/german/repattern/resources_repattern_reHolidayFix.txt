@@ -5,77 +5,77 @@
 // FORMAT: one line is one disjunction of the pattern
 //
 // http://de.wikipedia.org/wiki/Neujahr
-Neujahr
-Neujahrstag
-Neujahrsfest
+Neu[\–\-\–\-\–]?jahr
+Neu[\–\-\–\-\–]?jahrs[\–\-\–\-\–]?tag
+Neu[\–\-\–\-\–]?jahrs[\–\-\–\-\–]?fest
 
 // http://de.wikipedia.org/wiki/Heilige_Drei_K%C3%B6nige
 [Hh]eilig(en?)? [Dd]rei König(en?)?
-Epiphanias
-Epiphanie
-Erscheinung des Herrn
-Dreikönigsfest
-Dreikönigstag
-Theophanie
+Epi[\–\-\–\-\–]?pha[\–\-\–\-\–]?ni[\–\-\–\-\–]?as
+Epi[\–\-\–\-\–]?pha[\–\-\–\-\–]?nie
+Er[\–\-\–\-\–]?schei[\–\-\–\-\–]?nung des Herrn
+Drei[\–\-\–\-\–]?kö[\–\-\–\-\–]?nigs[\–\-\–\-\–]?fest
+Drei[\–\-\–\-\–]?kö[\–\-\–\-\–]?nigs[\–\-\–\-\–]?tag
+Theo[\–\-\–\-\–]?pha[\–\-\–\-\–]?nie
 
 // http://de.wikipedia.org/wiki/Erster_Mai
-Tag der Arbeit
-Maifeiertag
-Kampftag der Arbeiterbewegung
+Tag der Ar[\–\-\–\-\–]?beit
+Mai[\–\-\–\-\–]?fei[\–\-\–\-\–]?er[\–\-\–\-\–]?tag
+Kampf[\–\-\–\-\–]?tag der Ar[\–\-\–\-\–]?bei[\–\-\–\-\–]?ter[\–\-\–\-\–]?be[\–\-\–\-\–]?we[\–\-\–\-\–]?gung
 
 // http://de.wikipedia.org/wiki/Augsburger_Hohes_Friedensfest
-[Aa]ugsburger Friedensfest
-Friedensfest
-Augsburger [Hh]ohe Friedensfest
+[Aa]ugs[\–\-\–\-\–]?bur[\–\-\–\-\–]?ger Frie[\–\-\–\-\–]?dens[\–\-\–\-\–]?fest
+Frie[\–\-\–\-\–]?dens[\–\-\–\-\–]?fest
+Augs[\–\-\–\-\–]?bur[\–\-\–\-\–]?ger [Hh]o[\–\-\–\-\–]?he Frie[\–\-\–\-\–]?dens[\–\-\–\-\–]?fest
 
 // http://de.wikipedia.org/wiki/Mari%C3%A4_Aufnahme_in_den_Himmel
-Mari[aä] Himmelfahrt
-Mari[aä] Aufnahme in den Himmel
-Heimgang Mariens
-Mari[aä] Entschlafung
+Ma[\–\-\–\-\–]?ri[aä] Him[\–\-\–\-\–]?mel[\–\-\–\-\–]?fahrt
+Ma[\–\-\–\-\–]?ri[aä] Auf[\–\-\–\-\–]?nah[\–\-\–\-\–]?me in den Him[\–\-\–\-\–]?mel
+Heim[\–\-\–\-\–]?gang Ma[\–\-\–\-\–]?riens
+Ma[\–\-\–\-\–]?ri[aä] Ent[\–\-\–\-\–]?schla[\–\-\–\-\–]?fung
 
 // http://de.wikipedia.org/wiki/Tag_der_Deutschen_Einheit
-Tag der [Dd]eutschen Einheit
-Tag der Wiedervereinigung
+Tag der [Dd]eut[\–\-\–\-\–]?schen Ein[\–\-\–\-\–]?heit
+Tag der Wie[\–\-\–\-\–]?der[\–\-\–\-\–]?ver[\–\-\–\-\–]?ei[\–\-\–\-\–]?ni[\–\-\–\-\–]?gung
 
 // http://de.wikipedia.org/wiki/Reformationstag
-Reformationstag
-Tag der Reformation
+Re[\–\-\–\-\–]?for[\–\-\–\-\–]?ma[\–\-\–\-\–]?tions[\–\-\–\-\–]?tag
+Tag der Re[\–\-\–\-\–]?for[\–\-\–\-\–]?ma[\–\-\–\-\–]?tion
 
 // http://de.wikipedia.org/wiki/Allerheiligen
-Allerheiligen
+Al[\–\-\–\-\–]?ler[\–\-\–\-\–]?hei[\–\-\–\-\–]?li[\–\-\–\-\–]?gen
 
 // http://de.wikipedia.org/wiki/Weihnachten
-Weihnachten
-Weihnachtsabend
-Heiligabend
-[Hh]eilig(en)? Abend
-Weihnacht
-[Hh]eiliges Christfest
-Christfest
-[Hh]eiliger Christ
-[Hh]eilig Christ
-[Hh]eilige Nacht
-Heilige Nacht
-Christnacht
+Weih[\–\-\–\-\–]?nach[\–\-\–\-\–]?ten
+Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?abend
+Hei[\–\-\–\-\–]?lig[\–\-\–\-\–]?abend
+[Hh]ei[\–\-\–\-\–]?lig([\–\-\–\-\–]?en)? Abend
+Weih[\–\-\–\-\–]?nacht
+[Hh]ei[\–\-\–\-\–]?li[\–\-\–\-\–]?ges Christ[\–\-\–\-\–]?fest
+Christ[\–\-\–\-\–]?fest
+[Hh]ei[\–\-\–\-\–]?li[\–\-\–\-\–]?ger Christ
+[Hh]ei[\–\-\–\-\–]?lig Christ
+[Hh]ei[\–\-\–\-\–]?li[\–\-\–\-\–]?ge Nacht
+Hei[\–\-\–\-\–]?li[\–\-\–\-\–]?ge Nacht
+Christ[\–\-\–\-\–]?nacht
 //
-1\. Weihnachtsfeiertag
-1\. Weihnachtstag
-1\.Weihnachtsfeiertag
-1\.Weihnachtstag
-[Ee]rste[rnm]? Weihnachtsfeiertag
-[Ee]rste[rnm]? Weihnachtstag
+1\. Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?fei[\–\-\–\-\–]?er[\–\-\–\-\–]?tag
+1\. Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?tag
+1\.Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?fei[\–\-\–\-\–]?er[\–\-\–\-\–]?tag
+1\.Weih[\–\-\–\-\–]?nacht[\–\-\–\-\–]?stag
+[Ee]rs[\–\-\–\-\–]?te[rnm]? Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?fei[\–\-\–\-\–]?er[\–\-\–\-\–]?tag
+[Ee]rs[\–\-\–\-\–]?te[rnm]? Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?tag
 
 // http://de.wikipedia.org/wiki/Zweiter_Weihnachtsfeiertag
 // this won't work because the sentence borders are set at the full stop, so "2. Weihnachtstag" can never be found in a single sentence 
-2\. Weihnachtsfeiertag
-2\. Weihnachtstag
+2\. Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?fei[\–\-\–\-\–]?er[\–\-\–\-\–]?tag
+2\. Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?tag
 // this will be found, because the sentence is not split at this full stop
-2\.Weihnachtsfeiertag
-2\.Weihnachtstag
-[Zz]weite[rnm]? Weihnachtsfeiertag
-[Zz]weite[rnm]? Weihnachtstag
-Stephanitag
+2\.Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?fei[\–\-\–\-\–]?er[\–\-\–\-\–]?tag
+2\.Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?tag
+[Zz]weite[rnm]? Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?fei[\–\-\–\-\–]?er[\–\-\–\-\–]?tag
+[Zz]weite[rnm]? Weih[\–\-\–\-\–]?nachts[\–\-\–\-\–]?tag
+Ste[\–\-\–\-\–]?pha[\–\-\–\-\–]?ni[\–\-\–\-\–]?tag
 
 // http://de.wikipedia.org/wiki/Silvester
-Silvester
+Sil[\–\-\–\-\–]?ves[\–\-\–\-\–]?ter

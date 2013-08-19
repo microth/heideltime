@@ -3,9 +3,9 @@
 // date:   2011-06-10
 // This file contains regular expression patterns for "part" words.
 // FORMAT: one line is one disjunction of the pattern
-Anfang
-Mitte
-Ende
-Beginn
-[Ff]rühen
-[Ss]päten
+An[\–\-\–\-\–]?fang
+Mit[\–\-\–\-\–]?te
+En[\–\-\–\-\–]?de
+Be[\–\-\–\-\–]?ginn
+[Ff]rü[\–\-\–\-\–]?hen
+[Ss]pä[\–\-\–\-\–]?ten

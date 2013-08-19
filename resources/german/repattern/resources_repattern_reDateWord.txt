@@ -3,13 +3,13 @@
 // date:   2011-06-10
 // This file contains regular expression patterns for date words.
 // FORMAT: one line is one disjunction of the pattern
-[Gg]estern
-[Hh]eute
-[Mm]orgen
+[Gg]es[\–\-\–\-\–]?tern
+[Hh]eu[\–\-\–\-\–]?te
+[Mm]or[\–\-\–\-\–]?gen
 [Jj]etzt
-[Ss]o bald wie möglich
+[Ss]o bald wie mö[\–\-\–\-\–]?glich
 [Bb]ald
-[Kk]ürzlich
-[Dd]erzeit
-[Gg]egenwärtig
-[Hh]eutzutage
+[Kk]ürz[\–\-\–\-\–]?lich
+[Dd]er[\–\-\–\-\–]?zeit
+[Gg]e[\–\-\–\-\–]?gen[\–\-\–\-\–]?wär[\–\-\–\-\–]?tig
+[Hh]eut[\–\-\–\-\–]?zu[\–\-\–\-\–]?ta[\–\-\–\-\–]?ge
