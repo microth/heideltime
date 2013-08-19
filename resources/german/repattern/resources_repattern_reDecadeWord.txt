@@ -3,11 +3,11 @@
 // date:   2011-06-10
 // This file contains regular expression patterns for decade words.
 // FORMAT: one line is one disjunction of the pattern
-[Zz]wanziger
-[Dd]reißiger
-[Vv]ierziger
-[Ff]ünfziger
-[Ss]echziger
-[Ss]iebziger
-[Aa]chtziger
-[Nn]eunziger
+[Zz]wan[\–\-\–\-\–]?zi[\–\-\–\-\–]?ger
+[Dd]rei[\–\-\–\-\–]?ßi[\–\-\–\-\–]?ger
+[Vv]ier[\–\-\–\-\–]?zi[\–\-\–\-\–]?ger
+[Ff]ünf[\–\-\–\-\–]?zi[\–\-\–\-\–]?ger
+[Ss]ech[\–\-\–\-\–]?zi[\–\-\–\-\–]?ger
+[Ss]ieb[\–\-\–\-\–]?zi[\–\-\–\-\–]?ger
+[Aa]cht[\–\-\–\-\–]?zi[\–\-\–\-\–]?ger
+[Nn]eun[\–\-\–\-\–]?zi[\–\-\–\-\–]?ger

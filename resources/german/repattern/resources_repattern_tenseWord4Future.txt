@@ -4,9 +4,9 @@
 // This file contains regular expression patterns for 
 // POS tags indicating present or future: rePos4PresentFuture
 // FORMAT: one line is one disjunction of the pattern
-werden
-werde
+wer[\–\-\–\-\–]?den
+wer[\–\-\–\-\–]?de
 wirst
 wird
-werdet
+wer[\–\-\–\-\–]?det
 

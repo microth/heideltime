@@ -3,11 +3,11 @@
 // date:   2011-06-10
 // This file contains regular expression patterns for parts of year.
 // FORMAT: one line is one disjunction of the pattern
-[Ee]rste[ns]? Quartals?
-[Zz]weite[ns]? Quartals?
-[Dd]ritte[ns]? Quartals?
-[Vv]ierte[ns]? Quartals?
-[Ll]etzte[ns]? Quartals?
-[Ee]rste[n]? Hälfte
-[Zz]weite[n]? Hälfte
-[Ll]etzte[n]? Hälfte
+[Ee]rs[\–\-\–\-\–]?te[ns]? Quar[\–\-\–\-\–]?tals?
+[Zz]wei[\–\-\–\-\–]?te[ns]? Quar[\–\-\–\-\–]?tals?
+[Dd]rit[\–\-\–\-\–]?te[ns]? Quar[\–\-\–\-\–]?tals?
+[Vv]ier[\–\-\–\-\–]?te[ns]? Quar[\–\-\–\-\–]?tals?
+[Ll]etz[\–\-\–\-\–]?te[ns]? Quar[\–\-\–\-\–]?tals?
+[Ee]rs[\–\-\–\-\–]?te[n]? Hälf[\–\-\–\-\–]?te
+[Zz]wei[\–\-\–\-\–]?te[n]? Hälf[\–\-\–\-\–]?te
+[Ll]etz[\–\-\–\-\–]?te[n]? Hälf[\–\-\–\-\–]?te

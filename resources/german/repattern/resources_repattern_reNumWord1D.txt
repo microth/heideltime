@@ -9,6 +9,6 @@
 [Vv]ier
 [Ff]ünf
 [Ss]echs
-[Ss]ieben
+[Ss]ie[\–\-\–\-\–]?ben
 [Aa]cht
 [Nn]eun

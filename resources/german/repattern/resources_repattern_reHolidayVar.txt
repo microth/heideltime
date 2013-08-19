@@ -7,40 +7,40 @@
 
 // moveable holidays in Germany according to Wikipedia:
 // http://de.wikipedia.org/wiki/Liste_der_Gedenk-_und_Aktionstage#Vom_Ostertermin_abh.C3.A4ngige_Feste_und_Gedenktage
-Weiberfastnacht
-Rosenmontag
-Faschingsdienstag
-Aschermittwoch
-Palmsonntag
-Gründonnerstag
-Karfreitag
-Karsamstag
-Ostersonntag
-Ostermontag
-[wW]eißer Sonntag
-[wW]eisser Sonntag
-Christi Himmelfahrt
-Vatertag
-Pfingstsonntag
-Pfingstmontag
-Fronleichnam
-Buß- und Bettag
+Wei[\–\-\–\-\–]?ber[\–\-\–\-\–]?fast[\–\-\–\-\–]?nacht
+Ro[\–\-\–\-\–]?sen[\–\-\–\-\–]?mon[\–\-\–\-\–]?tag
+Fa[\–\-\–\-\–]?schings[\–\-\–\-\–]?diens[\–\-\–\-\–]?tag
+Asch[\–\-\–\-\–]?er[\–\-\–\-\–]?mitt[\–\-\–\-\–]?woch
+Palm[\–\-\–\-\–]?sonn[\–\-\–\-\–]?tag
+Grün[\–\-\–\-\–]?donn[\–\-\–\-\–]?ers[\–\-\–\-\–]?tag
+Kar[\–\-\–\-\–]?frei[\–\-\–\-\–]?tag
+Kar[\–\-\–\-\–]?sams[\–\-\–\-\–]?tag
+Os[\–\-\–\-\–]?ter[\–\-\–\-\–]?sonn[\–\-\–\-\–]?tag
+Os[\–\-\–\-\–]?ter[\–\-\–\-\–]?mon[\–\-\–\-\–]?tag
+[wW]ei[\–\-\–\-\–]?ßer Sonn[\–\-\–\-\–]?tag
+[wW]ei[\–\-\–\-\–]?sser Sonn[\–\-\–\-\–]?tag
+Chris[\–\-\–\-\–]?ti Him[\–\-\–\-\–]?mel[\–\-\–\-\–]?fahrt
+Va[\–\-\–\-\–]?ter[\–\-\–\-\–]?tag
+Pfingst[\–\-\–\-\–]?sonn[\–\-\–\-\–]?tag
+Pfingst[\–\-\–\-\–]?mon[\–\-\–\-\–]?tag
+Fron[\–\-\–\-\–]?leich[\–\-\–\-\–]?nam
+Buß[\–\-\–\-\–]? und Bet[\–\-\–\-\–]?tag
 
 // advent sundays: the four sundays before christmas(12-24)
-1\. Advent
-[eE]rste[rnm]? Advent
-2\. Advent
-[zZ]weite[rnm]? Advent
-3\. Advent
-[dD]ritte[rnm]? Advent
-4\. Advent
-[vV]ierte[rnm]? Advent
+1\. Ad[\–\-\–\-\–]?vent
+[eE]rs[\–\-\–\-\–]?te[rnm]? Ad[\–\-\–\-\–]?vent
+2\. Ad[\–\-\–\-\–]?vent
+[zZ]wei[\–\-\–\-\–]?te[rnm]? Ad[\–\-\–\-\–]?vent
+3\. Ad[\–\-\–\-\–]?vent
+[dD]rit[\–\-\–\-\–]?te[rnm]? Ad[\–\-\–\-\–]?vent
+4\. Ad[\–\-\–\-\–]?vent
+[vV]ier[\–\-\–\-\–]?te[rnm]? Ad[\–\-\–\-\–]?vent
 
 // http://de.wikipedia.org/wiki/Liste_der_Gedenk-_und_Aktionstage#Mai
-Muttertag
+Mut[\–\-\–\-\–]?ter[\–\-\–\-\–]?tag
 
 // http://de.wikipedia.org/wiki/Liste_der_Gedenk-_und_Aktionstage#Oktober
-Erntedankfest
+Ern[\–\-\–\-\–]?te[\–\-\–\-\–]?dank[\–\-\–\-\–]?fest
 
 // http://de.wikipedia.org/wiki/Volkstrauertag
-Volkstrauertag
+Volks[\–\-\–\-\–]?trau[\–\-\–\-\–]?er[\–\-\–\-\–]?tag

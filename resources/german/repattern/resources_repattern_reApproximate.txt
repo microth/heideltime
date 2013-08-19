@@ -4,21 +4,21 @@
 // This file contains regular expression patterns for "approximate" words.
 // FORMAT: one line is one disjunction of the pattern
 // about
-[Ee]twa
-[Uu]ngefähr
-[Cc]irca
+[Ee]t[\–\-\–\-\–]?wa
+[Uu]n[\–\-\–\-\–]?ge[\–\-\–\-\–]?fähr
+[Cc]ir[\–\-\–\-\–]?ca
 // less
 [Nn]icht mehr als
-[Nn]icht länger als
+[Nn]icht län[\–\-\–\-\–]?ger als
 [Bb]is zu
-[Ww]eniger als
+[Ww]e[\–\-\–\-\–]?ni[\–\-\–\-\–]?ger als
 [Ff]ast
-[Bb]einahe
-[Hh]öchstens
+[Bb]ei[\–\-\–\-\–]?na[\–\-\–\-\–]?he
+[Hh]öchs[\–\-\–\-\–]?tens
 //  more
-[Mm]indestens
+[Mm]in[\–\-\–\-\–]?des[\–\-\–\-\–]?tens
 [Mm]ehr als
-[Ll]änger als
+[Ll]än[\–\-\–\-\–]?ger als
 [Üü]ber
 // "um" is much more often used as preposition
 // [Uu]m

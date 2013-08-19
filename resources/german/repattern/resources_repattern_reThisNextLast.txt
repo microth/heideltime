@@ -3,10 +3,10 @@
 // date:   2011-06-10
 // This file contains regular expression patterns for this/next/last words.
 // FORMAT: one line is one disjunction of the pattern
-[Ll]etzte[rsn]?
-[Nn]ächste[rsn]?
-[Ff]olgende[rsn]?
-[Dd]iese[rsn]?
-[Vv]orige[rsn]?
-[Ss]elbe[rsn]?
-[Gg]leiche[rsn]?
+[Ll]etz[\–\-\–\-\–]?te[rsn]?
+[Nn]ächs[\–\-\–\-\–]?te[rsn]?
+[Ff]ol[\–\-\–\-\–]?gen[\–\-\–\-\–]?de[rsn]?
+[Dd]ie[\–\-\–\-\–]?se[rsn]?
+[Vv]o[\–\-\–\-\–]?ri[\–\-\–\-\–]?ge[rsn]?
+[Ss]el[\–\-\–\-\–]?be[rsn]?
+[Gg]lei[\–\-\–\-\–]?che[rsn]?
