@@ -2,6 +2,7 @@ package de.unihd.dbs.uima.annotator.heideltime.resources;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.regex.MatchResult;
@@ -41,16 +42,21 @@ public abstract class GenericResourceManager {
 	protected HashMap<String, String> readResourcesFromDirectory() {
 
 		HashMap<String, String> hmResources = new HashMap<String, String>();
+		InputStream is = this.getClass().getClassLoader().getResourceAsStream("used_resources.txt");
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("used_resources.txt")));
+		if(is == null) {
+			Logger.printError(component, "Couldn't load used_resources.txt. Perhaps you forgot to execute "
+					+ "the printResourceInformation.sh/bat script from inside the heideltime-kit/resources folder?");
+			System.exit(-1);
+		}
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		try {
-			String pathDelim = System.getProperty("file.separator");
 			for (String line; (line=br.readLine()) != null; ) {
-				Pattern paResource = Pattern.compile(".(?:\\"+pathDelim+"|/)?(\\"+pathDelim+"|/)"+LANGUAGE+"(?:\\"+pathDelim+"|/)"+resourceType+"(?:\\"+pathDelim+"|/)"+"resources_"+resourceType+"_"+"(.*?)\\.txt");
+				Pattern paResource = Pattern.compile(".(?:\\\\|/)?(\\\\|/)"+LANGUAGE+"(?:\\\\|/)"+resourceType+"(?:\\\\|/)"+"resources_"+resourceType+"_"+"(.*?)\\.txt");
 				for (MatchResult ro : Toolbox.findMatches(paResource, line)){
-					pathDelim = ro.group(1);
 					String foundResource  = ro.group(2);
-					String pathToResource = LANGUAGE+ro.group(1)+resourceType+ro.group(1)+"resources_"+resourceType+"_"+foundResource+".txt";
+					String pathToResource = LANGUAGE+"/"+resourceType+"/"+"resources_"+resourceType+"_"+foundResource+".txt";
 					hmResources.put(foundResource, pathToResource);
 				}
 			}
@@ -59,6 +65,15 @@ public abstract class GenericResourceManager {
 			Logger.printError(component, "Failed to read a resource from used_resources.txt.");
 			System.exit(-1);
 		}
+		
+		Logger.printDetail(component, "Read in " + hmResources.size() + " " + LANGUAGE + " " + resourceType + " resource files.");
+		
+		if(hmResources.size() == 0) {
+			Logger.printError(component, "used_resources.txt contained no readable files. Consider rebuilding it "
+					+ "using the printResourceInformation.sh/bat script from the heideltime-kit/resources folder.");
+			System.exit(-1);
+		}
+		
 		return hmResources;
 	}
 
