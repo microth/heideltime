@@ -3,27 +3,36 @@ package de.unihd.dbs.uima.annotator.heideltime.resources;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.TreeMap;
 
 import de.unihd.dbs.uima.annotator.heideltime.utilities.Logger;
+
 /**
  * 
- * This class fills the role of a manager of all the RePattern resources.
- * It reads the data from a file system and fills up a bunch of HashMaps
- * with their information.
+ * This class fills the role of a manager of all the RePattern resources. It
+ * reads the data from a file system and fills up a bunch of HashMaps with their
+ * information.
+ * 
  * @author jannik stroetgen
- *
+ * 
  */
 public class RePatternManager extends GenericResourceManager {
 	protected static HashMap<Language, RePatternManager> instances = new HashMap<Language, RePatternManager>();
-	
+
 	// STORE PATTERNS AND NORMALIZATIONS
 	private TreeMap<String, String> hmAllRePattern;
 
 	/**
 	 * Constructor calls the parent constructor that sets language/resource
 	 * parameters and collects resource repatterns.
+	 * 
 	 * @param language
 	 */
 	private RePatternManager(String language) {
@@ -32,9 +41,9 @@ public class RePatternManager extends GenericResourceManager {
 		// initialize the member map of all repatterns
 		hmAllRePattern = new TreeMap<String, String>();
 
-		//////////////////////////////////////////////////////
+		// ////////////////////////////////////////////////////
 		// READ PATTERN RESOURCES FROM FILES AND STORE THEM //
-		//////////////////////////////////////////////////////
+		// ////////////////////////////////////////////////////
 		HashMap<String, String> hmResourcesRePattern = readResourcesFromDirectory();
 		for (String which : hmResourcesRePattern.keySet()) {
 			hmAllRePattern.put(which, "");
@@ -44,27 +53,32 @@ public class RePatternManager extends GenericResourceManager {
 
 	/**
 	 * singleton producer.
+	 * 
 	 * @return singleton instance of RePatternManager
 	 */
 	public static RePatternManager getInstance(Language language) {
-		if(!instances.containsKey(language)) {
-			RePatternManager nm = new RePatternManager(language.getResourceFolder());
+		if (!instances.containsKey(language)) {
+			RePatternManager nm = new RePatternManager(
+					language.getResourceFolder());
 			instances.put(language, nm);
 		}
-		
+
 		return instances.get(language);
 	}
-	
-	
+
 	/**
-	 * READ THE REPATTERN FROM THE FILES. The files have to be defined in the HashMap hmResourcesRePattern.
-	 * @param hmResourcesRePattern RePattern resources to be interpreted
+	 * READ THE REPATTERN FROM THE FILES. The files have to be defined in the
+	 * HashMap hmResourcesRePattern.
+	 * 
+	 * @param hmResourcesRePattern
+	 *            RePattern resources to be interpreted
 	 */
 	private void readRePatternResources(HashMap<String, String> hmResourcesRePattern) {
 		
 		//////////////////////////////////////
 		// READ REGULAR EXPRESSION PATTERNS //
 		//////////////////////////////////////
+		HashMap<String, LinkedList<String>> myRePatterns = new HashMap<String, LinkedList<String>>();
 		try {
 			for (String resource : hmResourcesRePattern.keySet()) {
 				Logger.printDetail(component, "Adding pattern resource: "+resource);
@@ -81,6 +95,11 @@ public class RePatternManager extends GenericResourceManager {
 									String devPattern = hmAllRePattern.get(which);
 									devPattern = devPattern + "|" + line;
 									hmAllRePattern.put(which, devPattern);
+									
+									if(!myRePatterns.containsKey(which))
+										myRePatterns.put(which, new LinkedList<String>());
+									
+									myRePatterns.get(which).add(line);
 								}
 							}
 						}
@@ -90,6 +109,41 @@ public class RePatternManager extends GenericResourceManager {
 						}
 					}
 				}
+			}
+			for(Entry<String, LinkedList<String>> myEntry : myRePatterns.entrySet()) {
+				Collections.sort(myEntry.getValue(), new Comparator<String>() {
+					@Override
+					public int compare(String o1, String o2) {
+						Integer size1 = o1.length();
+						Integer size2 = o2.length();
+						Pattern p1 = Pattern.compile("[^\\)]\\?");
+						for(Matcher m1_1 = p1.matcher(o1); m1_1.find(); )
+							size1--;
+						for(Matcher m1_2 = p1.matcher(o2); m1_2.find(); )
+							size2--;
+						
+						Pattern p2 = Pattern.compile("\\[([^\\]]*)\\]");
+						for(Matcher m2_1 = p2.matcher(o1); m2_1.find(); )
+							size1 -= m2_1.group(1).length() - 1;
+						for(Matcher m2_2 = p2.matcher(o2); m2_2.find(); )
+							size2 -= m2_2.group(1).length() - 1;
+						
+						Pattern p3 = Pattern.compile("(\\([^\\)]+\\))\\?");
+						for(Matcher m3_1 = p3.matcher(o1); m3_1.find(); )
+							size1 -= m3_1.group(1).length();
+						for(Matcher m3_2 = p3.matcher(o2); m3_2.find(); )
+							size2 -= m3_2.group(1).length();
+						
+						return size2 - size1;
+					}
+				});
+				String myPatternComposite = "";
+				for(String pattern : myEntry.getValue()) {
+					myPatternComposite += "|" + pattern;
+				}
+				System.out.println(myEntry.getKey() + " old: " + hmAllRePattern.get(myEntry.getKey())); // TODO:DEBUG
+				System.out.println(myEntry.getKey() + " new: " + myPatternComposite); // TODO:DEBUG
+				hmAllRePattern.put(myEntry.getKey(), myPatternComposite);
 			}
 			////////////////////////////
 			// FINALIZE THE REPATTERN //
@@ -101,27 +155,36 @@ public class RePatternManager extends GenericResourceManager {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Pattern containing regular expression is finalized, i.e., created correctly and added to hmAllRePattern.
-	 * @param name key name
-	 * @param rePattern repattern value
+	 * Pattern containing regular expression is finalized, i.e., created
+	 * correctly and added to hmAllRePattern.
+	 * 
+	 * @param name
+	 *            key name
+	 * @param rePattern
+	 *            repattern value
 	 */
 	private void finalizeRePattern(String name, String rePattern) {
 		// create correct regular expression
 		rePattern = rePattern.replaceFirst("\\|", "");
-		/* this was added to reduce the danger of getting unusable groups from user-made repattern
-		 * files with group-producing parentheses (i.e. "(foo|bar)" while matching against the documents. */
+		/*
+		 * this was added to reduce the danger of getting unusable groups from
+		 * user-made repattern files with group-producing parentheses (i.e.
+		 * "(foo|bar)" while matching against the documents.
+		 */
 		rePattern = rePattern.replaceAll("\\(([^\\?])", "(?:$1");
 		rePattern = "(" + rePattern + ")";
 		rePattern = rePattern.replaceAll("\\\\", "\\\\\\\\");
 		// add rePattern to hmAllRePattern
 		hmAllRePattern.put(name, rePattern);
 	}
-	
+
 	/**
 	 * proxy method to access the hmAllRePattern member
-	 * @param key key to check for
+	 * 
+	 * @param key
+	 *            key to check for
 	 * @return whether the map contains the key
 	 */
 	public Boolean containsKey(String key) {
@@ -130,7 +193,9 @@ public class RePatternManager extends GenericResourceManager {
 
 	/**
 	 * proxy method to access the hmAllRePattern member
-	 * @param key Key to retrieve data from
+	 * 
+	 * @param key
+	 *            Key to retrieve data from
 	 * @return String from the map
 	 */
 	public String get(String key) {
