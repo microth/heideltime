@@ -15,13 +15,12 @@ import java.util.Properties;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 
 import de.unihd.dbs.uima.annotator.heideltime.utilities.Logger;
 import de.unihd.dbs.uima.types.heideltime.Sentence;
 import de.unihd.dbs.uima.types.heideltime.Token;
-
+import edu.stanford.nlp.ling.HasOffset;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.ling.Word;
@@ -31,7 +30,7 @@ import edu.stanford.nlp.tagger.maxent.TaggerConfig;
 import edu.stanford.nlp.process.PTBTokenizer.PTBTokenizerFactory;
 
 /**
- * @author Julian Zell
+ * @author Julian Zell, Norman Weisenburger
  *
  */
 public class StanfordPOSTaggerWrapper extends JCasAnnotator_ImplBase {
@@ -92,10 +91,9 @@ public class StanfordPOSTaggerWrapper extends JCasAnnotator_ImplBase {
 	 * Method that gets called to process the documents' cas objects
 	 */
 	public void process(JCas jcas) throws AnalysisEngineProcessException {
-		Integer offset = 0; // a cursor of sorts to keep up with the position in the document text
-		
 		// grab the document text
 		String docText = jcas.getDocumentText();
+		
 		// get [sentence-tokens[word-tokens]] from the MaxentTagger
 		TokenizerFactory<Word> fac = PTBTokenizerFactory.newTokenizerFactory();  
 		fac.setOptions("ptb3Escaping=false,untokenizable=noneKeep");
@@ -103,73 +101,77 @@ public class StanfordPOSTaggerWrapper extends JCasAnnotator_ImplBase {
 		
 		// iterate over sentences in this document
 		for(List<HasWord> sentenceToken : tokenArray) {
-			List<TaggedWord> taggedSentence = mt.tagSentence(sentenceToken);
-			ListIterator<TaggedWord> twit = taggedSentence.listIterator();
+            ListIterator<TaggedWord> twit = null;
+            if(annotate_tokens && annotate_partofspeech) {
+                List<TaggedWord> taggedSentence = mt.tagSentence(sentenceToken);
+                twit = taggedSentence.listIterator();
+            }
+
+            // init variables used int the following loop,
+            // which are required to determine sentence boundaries afterwards
+            boolean isFirstWord = true;
+            int firstWordOfSentenceBegin = -1;
+            int lastWordOfSentenceEnd = -1;
 			
-			// create a sentence object. gets added to index or discarded depending on configuration
-			Sentence sentence = new Sentence(jcas);
-			sentence.setBegin(offset);
-			
-			Integer wordCount = 0;
 			// iterate over words in this sentence
 			for(HasWord wordToken : sentenceToken) {
-				Token t = new Token(jcas);
-				TaggedWord tw = twit.next();
-				
-				// if pos is supposed to be added, iterate through the tagged tokens and set pos
-				if(annotate_partofspeech) {
-					t.setPos(tw.tag());
-				}
-				
-				String thisWord = wordToken.word();
-				
-				if(docText.indexOf(thisWord, offset) < 0) {
-					Logger.printDetail(component, "A previously tagged token wasn't found in the document text: \"" + thisWord + "\". " +
-							"This may be due to unpredictable punctuation tokenization; hence this token isn't tagged.");
-					continue; // jump to next token: discards token
-				} else {
-					offset = docText.indexOf(thisWord, offset); // set cursor to the starting position of token in docText
-					t.setBegin(offset);
-					++wordCount;
-				}
-				
-				offset += thisWord.length(); // move cursor behind the word
-				t.setEnd(offset);
-				
-				// add tokens to indexes.
-				if(annotate_tokens) {
-					t.addToIndexes();
-				}
+                // determine the wordTokens begin and end index within the document
+                // see 'getOffsets' for further details
+                HasOffset offsetToken = getOffsets(wordToken);
+                
+                if(isFirstWord) {
+                    firstWordOfSentenceBegin = offsetToken.beginPosition() - 1;
+                    isFirstWord = false;
+                }
+
+                if(annotate_tokens) {
+                    Token jcasToken = new Token(jcas);
+
+                    jcasToken.setBegin(offsetToken.beginPosition());
+                    jcasToken.setEnd(offsetToken.endPosition());
+
+                    // if pos is supposed to be added, iterate through the tagged tokens and set pos
+                    if(annotate_partofspeech) {
+                        TaggedWord taggedWord = twit.next();
+                        jcasToken.setPos(taggedWord.tag());
+                    }
+
+                    jcasToken.addToIndexes();
+                }
+
+                lastWordOfSentenceEnd = offsetToken.endPosition() - 1;
 			}
+
+            if(firstWordOfSentenceBegin <= -1 || lastWordOfSentenceEnd <= -1) {
+                //means sentence did not contain any word -> which does not make sense
+                continue;
+            }
 			
 			// if flag is set, also tag sentences
 			if(annotate_sentences) {
-				if(wordCount == 0)
-					sentence.setEnd(offset);
-				else
-					sentence.setEnd(offset-1);
+				Sentence sentence = new Sentence(jcas);
+				sentence.setBegin(firstWordOfSentenceBegin);
+				sentence.setEnd(lastWordOfSentenceEnd);
 				sentence.addToIndexes();
 			}
 		}
-		
-		// TODO: DEBUG
-		FSIterator fsi = jcas.getAnnotationIndex(Sentence.type).iterator();
-		while(fsi.hasNext()) {
-			Sentence s = (Sentence) fsi.next();
-			if(s.getBegin() < 0 || s.getEnd() < 0) {
-				System.err.println("Sentence: " + s.getBegin() + ":" + s.getEnd() + " = " + s.getCoveredText());
-				System.err.println("wrong index in text: " + jcas.getDocumentText());
-				System.exit(-1);
-			}
-		}
-		FSIterator fsi2 = jcas.getAnnotationIndex(Token.type).iterator();
-		while(fsi2.hasNext()) {
-			Token t = (Token) fsi2.next();
-			if(t.getBegin() < 0 || t.getEnd() < 0) {
-				System.err.println("In text: " + jcas.getDocumentText());
-				System.err.println("Token: " + t.getBegin() + ":" + t.getEnd());
-				System.exit(-1);
-			}
-		}
+	}
+
+    /**
+	 * Determines the document text offsets of a token
+	 * 
+	 * MaxentTagger.tokenizeText returns tokens typed to interface 'HasWord',
+	 * which does not has methods to determine the begin and end offsets of the
+	 * token/word. Assume that begin and end offsets are always known after
+	 * tokenization. Further assume that the actual type implementing 'HasWord'
+	 * also implements 'HasOffset', i.e. the "unpleasant" type 'HasWord' is the
+	 * consequence of the interface segregation principle -> Simply cast
+	 * 
+	 * @param wordToken
+	 * @return wordToken cast to the HasOffset interface
+	 */
+	private HasOffset getOffsets(HasWord wordToken) {
+		return (HasOffset) wordToken;
 	}
 }
+
