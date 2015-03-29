@@ -1,0 +1,26 @@
+// author: Antonio Cancela Díaz, Jannik Strötgen
+// email:  stroetgen@uni-hd.de
+// date:   2012-07-16
+// This file contains "set words" and their normalized expressions
+// according to TIMEX3 format.
+// For example, the normalized value of "daily" is "XXXX-XX-XX"
+// FORMAT: "set-word","normalized-set-word"
+"[Aa]ll'( )?anno","P1Y"
+"[Ll]'( )?anno","P1Y"	  
+"annual[ie]","P1Y"
+"[Aa]nnualmente","P1Y" 
+"annu[oaie]","P1Y"
+"annualizzat[oaei]","P1Y"
+"[Pp]er anno","P1Y"
+"mensil[ei]","P1M"
+"cotidian[oaie]","P1D"
+"di ogni giorno","P1D"
+"di tutti i giorni","P1D"
+"giornalier[oaie]","P1D"
+"[Gg]iornalmente","P1D"
+"[Qq]uotidianamente","P1D"	 
+"quotidian[oaie]","P1D"
+"[Aa](lla)? settimana","P1W"	 
+"ebdomadari[oaie]?","P1W" 
+"settimanal[ei]","P1W"
+"[Ss]ettimanalmente","P1W"
